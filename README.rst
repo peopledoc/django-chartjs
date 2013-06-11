@@ -42,10 +42,13 @@ A simple Line Chart example.
 
     {% load staticfiles %}
     <html>
-    	<head>
+        <head>
             <title>django-chartjs line chart demo</title>
-    	</head>
-    	<body>
+            <!--[if lte IE 8]>
+                <script src="{% static 'js/excanvas.js' %}"></script>
+            <![endif]-->
+        </head>
+        <body>
             <h1>Some Line Charts loaded in Ajax!</h1>
             
             <canvas id="myChart" width="500" height="400"></canvas>
