@@ -53,7 +53,7 @@ A simple Line Chart example.
             <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
             <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
             <script type="text/javascript">
-                $.get('{% url 'line_chart_json' %}', function(data) {
+                $.get('{% url "line_chart_json" %}', function(data) {
                     var ctx = $("#myChart").get(0).getContext("2d");
                     new Chart(ctx).Line(data);
                 });
@@ -78,12 +78,11 @@ A simple Line Chart example.
             return ["January", "February", "March", "April", "May", "June", "July"]
     
         def get_data(self):
-            """Return 3 random dataset to plot."""
-            def data():
-                """Return 7 randint between 0 and 100."""
-                return [randint(0, 100) for x in range(7)]
+            """Return 3 dataset to plot."""
     
-            return [data() for x in range(3)]
+            return [[75, 44, 92, 11, 44, 95, 35],
+                    [41, 92, 18, 3, 73, 87, 92],
+                    [87, 21, 94, 3, 90, 13, 65]]
     
     
     line_chart = TemplateView.as_view(template_name='line_chart.html')
