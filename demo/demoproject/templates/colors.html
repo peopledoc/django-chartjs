@@ -1,0 +1,14 @@
+<html>
+	<head>
+        <title>django-chartjs colors demo</title>
+	</head>
+	<body>
+        <h1>Here is a list of colors generated for each dataset!</h1>
+
+        {% for color in colors %}
+        <div style="display: inline-block; width: 100px; height: 100px; background: rgb({{ color.0 }}, {{ color.1 }}, {{ color.2 }});"></div>
+        {% cycle '' '' '' '' '' '' '' '' '' '<hr style="clear: both;"/>' %}
+        {% endfor %}
+
+    </body>
+</html>
