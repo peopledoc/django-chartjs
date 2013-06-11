@@ -1,24 +1,15 @@
-{% load i18n i18nurl %}
 <html>
 	<head>
-        <title>django-i18nurl demo</title>
+        <title>django-chartjs demo</title>
 	</head>
 	<body>
-        <h1>{% trans "Welcome to django-i18nurl demo!" %}</h1>
-        <p>{% trans "Here are some demo links. Browse the code to see how they are implemented" %}</p>
+        <h1>Welcome to django-chartjs demo!</h1>
+        <p>Here are some demo links. Browse the code to see how they are implemented</p>
 
-		<h2>{% trans "Using current_i18nurl" %}</h2>
 		<ul>
-		  <li><a href="{% current_i18nurl 'fr' %}">Français</a></li>
-		  <li><a href="{% current_i18nurl 'en' %}">English</a></li>
-		  <li><a href="{% current_i18nurl 'de' %}">Deutsch</a></li>
-		</ul>
-
-		<h2>{% trans "Using i18nurl" %}</h2>
-		<ul>
-		  <li><a href="{% i18nurl 'home' 'fr' %}">Français</a></li>
-		  <li><a href="{% i18nurl 'home' 'en' %}">English</a></li>
-		  <li><a href="{% i18nurl 'home' 'de' %}">Deutsch</a></li>
+		  <li><a href="{% url 'home' %}">Home</a></li>
+		  <li><a href="{% url 'colors' %}">Colors</a></li>
+		  <li><a href="{% url 'line_chart' %}">Line Chart Demo</a></li>
 		</ul>
     </body>
 </html>

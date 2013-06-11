@@ -1,6 +1,18 @@
 # -*- coding: utf-8 -*-
 import json
 from django import http
+from django.views.generic import TemplateView
+
+
+class ComplexEncoder(json.JSONEncoder):
+    """Always return JSON primitive."""
+    def default(self, obj):
+        try:
+            return super(ComplexEncoder, obj).default(obj)
+        except TypeError:
+            if hasattr(obj, 'pk'):
+                return obj.pk
+            return str(obj)
 
 
 class JSONResponseMixin(object):
@@ -16,8 +28,9 @@ class JSONResponseMixin(object):
 
     def convert_context_to_json(self, context):
         "Convert the context dictionary into a JSON object"
-        # Note: This is *EXTREMELY* naive; in reality, you'll need
-        # to do much more complex handling to ensure that arbitrary
-        # objects -- such as Django model instances or querysets
-        # -- can be serialized as JSON.
-        return json.dumps(context)
+        return json.dumps(context, cls=ComplexEncoder)
+
+
+class JSONView(JSONResponseMixin, TemplateView):
+    """A Base JSON View using the Mixin."""
+    pass
