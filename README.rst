@@ -11,7 +11,7 @@ started after writting just your SQL query.
   <https://github.com/novagile/django-chartjs/graphs/contributors>`_
 * Licence: BSD
 * Compatibility: Django 1.5+, python2.7 up to python3.3
-* Project URL: https://github.com/novagile/django-i18nurl
+* Project URL: https://github.com/novagile/django-chartjs
 
 
 Getting Started
