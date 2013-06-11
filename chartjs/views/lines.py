@@ -5,6 +5,8 @@ from ..colors import next_color
 
 
 class BaseLineChartView(JSONView):
+    providers = {}
+
     def get_context_data(self):
         data = {}
         data['labels'] = self.get_labels()
@@ -17,13 +19,19 @@ class BaseLineChartView(JSONView):
     def get_datasets(self):
         datasets = []
         color_generator = self.get_colors()
-        for data in self.get_data():
+        data = self.get_data()
+        providers = self.get_providers()
+        num = len(providers)
+        for i, data in enumerate(self.get_data()):
             color = tuple(next(color_generator))
-            datasets.append({'fillColor': "rgba(%d, %d, %d, 0.5)" % color,
-                             'strokeColor': "rgba(%d, %d, %d, 1)" % color,
-                             'pointColor': "rgba(%d, %d, %d, 1)" % color,
-                             'pointStrokeColor': "#fff",
-                             'data': data})
+            dataset = {'fillColor': "rgba(%d, %d, %d, 0.5)" % color,
+                       'strokeColor': "rgba(%d, %d, %d, 1)" % color,
+                       'pointColor': "rgba(%d, %d, %d, 1)" % color,
+                       'pointStrokeColor': "#fff",
+                       'data': data}
+            if i < num:
+                dataset['name'] = providers[i]
+            datasets.append(dataset)
         return datasets
 
     def get_labels(self):
@@ -35,3 +43,6 @@ class BaseLineChartView(JSONView):
         raise NotImplementedError(
             'You should return a data list list. '
             '(i.e: [[25, 34, 0, 1, 50], ...]).')
+
+    def get_providers(self):
+        return []
