@@ -1,8 +1,10 @@
-###############
-Django Chart.js
-###############
+##############
+Django Chartjs
+##############
 
-Django Chart.js lets you manage charts in you Django application.
+Django Chartjs lets you manage charts in you Django application.
+
+This is compatible with Chart.js and Highcharts JS librairies.
 
 Using a set of predefined Class Based Views your are able to get
 started after writting just your SQL query.
