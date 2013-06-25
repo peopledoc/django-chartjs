@@ -81,7 +81,7 @@ class BaseColumnsHighChartsView(JSONView):
                              {series.name}:
                          </td>
                          <td style="padding:0">
-                             <b>{point.y:.1f} %s</b>
+                             <b>{point.y:.0f} %s</b>
                          </td>
                      </tr>''' % self.get_yUnit(),
             'footerFormat': '</table>',
