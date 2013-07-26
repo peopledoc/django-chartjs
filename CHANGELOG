@@ -1,9 +1,11 @@
 Changelog
 =========
 
-0.2 (unreleased)
+0.2 (2013-07-26)
 ----------------
 
+* Only display integer
+* Add highcharts Columns chart
 
 0.1 (2013-06-12)
 ----------------
