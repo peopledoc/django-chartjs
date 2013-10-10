@@ -51,6 +51,5 @@ class BaseLineChartView(JSONView):
 class HighchartPlotLineChartView(BaseLineChartView):
     def get_context_data(self):
         data = super(HighchartPlotLineChartView, self).get_context_data()
-        data['series'] = data['datasets']
-        del data['datasets']
+        data['series'] = data.pop('datasets')
         return data
