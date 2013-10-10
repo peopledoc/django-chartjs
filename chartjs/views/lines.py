@@ -46,3 +46,11 @@ class BaseLineChartView(JSONView):
 
     def get_providers(self):
         return []
+
+
+class HighchartPlotLineChartView(BaseLineChartView):
+    def get_context_data(self):
+        data = super(HighchartLineChartView, self).get_context_data()
+        data['series'] = data['datasets']
+        del data['datasets']
+        return data
