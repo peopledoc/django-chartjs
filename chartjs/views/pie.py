@@ -26,3 +26,8 @@ class HighChartDonutView(HighChartPieView):
         for serie in series:
             serie.update({"innerSize": self.inner_size})
         return series
+
+    def get_plot_options(self):
+        options = super(HighChartDonutView, self).get_plot_options()
+        options.update({'pie': {"showInLegend": True}})
+        return options

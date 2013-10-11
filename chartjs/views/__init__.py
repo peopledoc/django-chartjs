@@ -9,9 +9,17 @@ class HighChartsView(JSONView):
     def get_colors(self):
         return next_color()
 
+    def get_legend(self):
+        return {}
+
+    def get_plot_options(self):
+        return {}
+
     def get_context_data(self):
         data = {}
         data['title'] = {'text': self.title}
+        data['plotOptions'] = self.get_plot_options()
+        data['legend'] = self.get_legend()
         return data
 
     def get_data(self):
