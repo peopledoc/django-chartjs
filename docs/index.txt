@@ -1,0 +1,15 @@
+.. include:: ../README.rst
+
+
+********
+Contents
+********
+
+.. toctree::
+   :maxdepth: 2
+   :titlesonly:
+
+   demo
+   install
+   about/index
+   dev

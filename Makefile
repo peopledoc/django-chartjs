@@ -10,3 +10,6 @@ test: bin/python
 
 clean:
 	rm -rf bin .tox include/ lib/ man/ django_chartjs.egg-info/ build/
+
+docs:
+	(cd docs; make html)
