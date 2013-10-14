@@ -1,0 +1,12 @@
+language: python
+python:
+    - "2.7"
+    - "3.3"
+install:
+    - python setup.py develop
+    - (cd demo; python setup.py develop)
+script: flake8 chartjs && demo test demoproject
+after_success:
+  # Report coverage results to coveralls.io
+  - pip install coveralls
+  - coveralls

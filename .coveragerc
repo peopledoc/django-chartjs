@@ -1,0 +1,3 @@
+[run]
+source = chartjs
+omit = *settings.py*,*manage.py*

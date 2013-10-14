@@ -15,31 +15,32 @@ NAME = 'django-chartjs-demo'
 README = read_relative_file('README')
 VERSION = '0.1'
 PACKAGES = ['demoproject']
-REQUIRES = ['django-chartjs']
+REQUIRES = ['django-chartjs', 'Django', 'django_nose']
 
 
-setup(name=NAME,
-      version=VERSION,
-      description='Demo project for django-chartjs.',
-      long_description=README,
-      classifiers=['Development Status :: 1 - Planning',
-                   'License :: OSI Approved :: BSD License',
-                   'Programming Language :: Python :: 2.7',
-                   'Programming Language :: Python :: 2.6',
-                   'Framework :: Django',
-                   ],
-      keywords='class-based view, generic view, download',
-      author=u'Rémy HUBSCHER',
-      author_email='remy.hubscher@novapost.fr',
-      url='https://github.com/novagile/django-chartjs',
-      license='BSD',
-      packages=PACKAGES,
-      include_package_data=True,
-      zip_safe=False,
-      install_requires=REQUIRES,
-      entry_points={
-          'console_scripts': [
-              'demo = demoproject.manage:main',
-          ]
-      },
-      )
+setup(
+    name=NAME,
+    version=VERSION,
+    description='Demo project for django-chartjs.',
+    long_description=README,
+    classifiers=['Development Status :: 1 - Planning',
+                 'License :: OSI Approved :: BSD License',
+                 'Programming Language :: Python :: 2.7',
+                 'Programming Language :: Python :: 3',
+                 'Framework :: Django',
+                 ],
+    keywords='class-based view, generic view, download',
+    author=u'Rémy HUBSCHER',
+    author_email='remy.hubscher@novapost.fr',
+    url='https://github.com/novagile/django-chartjs',
+    license='BSD',
+    packages=PACKAGES,
+    include_package_data=True,
+    zip_safe=False,
+    install_requires=REQUIRES,
+    entry_points={
+        'console_scripts': [
+            'demo = demoproject.manage:main',
+        ]
+    },
+)

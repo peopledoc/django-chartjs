@@ -35,7 +35,7 @@ class BaseColumnsHighChartsView(JSONView):
         try:
             return {'text': u'%s' % self.title}
         except AttributeError:
-            raise NotImplementedError(
+            raise NotImplementedError(  # pragma: no cover
                 'You should define self.title or self.get_title')
 
     def get_subtitle(self):
@@ -47,7 +47,7 @@ class BaseColumnsHighChartsView(JSONView):
         return {'categories': self.get_labels()}
 
     def get_labels(self):
-        raise NotImplementedError(
+        raise NotImplementedError(  # pragma: no cover
             'You should return a labels list. '
             '(i.e: ["January", ...])')
 
@@ -64,7 +64,7 @@ class BaseColumnsHighChartsView(JSONView):
         try:
             return self.yUnit
         except AttributeError:
-            raise NotImplementedError(
+            raise NotImplementedError(  # pragma: no cover
                 'Please define the yAxis unit (self.yUnit).')
 
     def get_tooltip(self):
@@ -109,7 +109,7 @@ class BaseColumnsHighChartsView(JSONView):
         In the same order as providers and with the same serie length
         of xAxis.
         """
-        raise NotImplementedError(
+        raise NotImplementedError(  # pragma: no cover
             'You should return a data list list. '
             '(i.e: [[25, 34, 0, 1, 50], ...]).')
 
@@ -121,5 +121,5 @@ class BaseColumnsHighChartsView(JSONView):
         try:
             return self.providers
         except AttributeError:
-            raise NotImplementedError(
+            raise NotImplementedError(  # pragma: no cover
                 'You should define self.providers of self.get_providers.')

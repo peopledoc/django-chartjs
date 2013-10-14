@@ -4,7 +4,8 @@ from itertools import islice
 from django.views.generic import TemplateView
 
 from chartjs.colors import next_color, COLORS
-from chartjs.views.lines import BaseLineChartView
+from chartjs.views.lines import BaseLineChartView, HighchartPlotLineChartView
+from chartjs.views.pie import HighChartPieView, HighChartDonutView
 
 
 class ColorsView(TemplateView):
@@ -16,7 +17,7 @@ class ColorsView(TemplateView):
         return data
 
 
-class LineChartJSONView(BaseLineChartView):
+class ChartMixin(object):
     def get_labels(self):
         """Return 7 labels."""
         return ["January", "February", "March", "April", "May", "June", "July"]
@@ -37,8 +38,27 @@ class LineChartJSONView(BaseLineChartView):
         return next_color(colors)
 
 
+class LineChartJSONView(ChartMixin, BaseLineChartView):
+    pass
+
+
+class LineHighChartJSONView(ChartMixin, HighchartPlotLineChartView):
+    pass
+
+
+class PieHighChartJSONView(ChartMixin, HighChartPieView):
+    pass
+
+
+class DonutHighChartJSONView(ChartMixin, HighChartDonutView):
+    pass
+
+
 # Pre-configured views.
 colors = ColorsView.as_view()
 
 line_chart = TemplateView.as_view(template_name='line_chart.html')
 line_chart_json = LineChartJSONView.as_view()
+line_highchart_json = LineHighChartJSONView.as_view()
+pie_highchart_json = PieHighChartJSONView.as_view()
+donut_highchart_json = DonutHighChartJSONView.as_view()

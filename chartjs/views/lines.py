@@ -36,12 +36,12 @@ class BaseLineChartView(JSONView):
         return datasets
 
     def get_labels(self):
-        raise NotImplementedError(
+        raise NotImplementedError(  # pragma: no cover
             'You should return a labels list. '
             '(i.e: ["January", ...])')
 
     def get_data(self):
-        raise NotImplementedError(
+        raise NotImplementedError(  # pragma: no cover
             'You should return a data list list. '
             '(i.e: [[25, 34, 0, 1, 50], ...]).')
 
@@ -58,3 +58,6 @@ class HighchartPlotLineChartView(HighChartsView):
         data['series'] = self.get_series()
         data['yAxis'] = {'title': {'text': u'%s' % self.y_axis_title}}
         return data
+
+    def get_providers(self):
+        return []
