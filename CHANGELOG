@@ -1,23 +1,26 @@
 Changelog
 =========
 
-0.3 (unreleased)
+0.3 (2013-10-14)
 ----------------
 
+- Add Py3 Support
+- Add Highchart Pie, Donut and lines
+- Add test
 
 
 0.2 (2013-07-26)
 ----------------
 
-* Only display integer
-* Add highcharts Columns chart
+- Only display integer
+- Add highcharts Columns chart
 
 0.1 (2013-06-12)
 ----------------
 
-* Add providers support.
-* Add support for IE < 8.
-* Add an example to the README.
-* Adding the BaseLineChart view as well as an example of how to use it..
-* Add a demo page for next_color.
-* Init django-chartjs project.
+- Add providers support.
+- Add support for IE < 8.
+- Add an example to the README.
+- Adding the BaseLineChart view as well as an example of how to use it..
+- Add a demo page for next_color.
+- Init django-chartjs project.
