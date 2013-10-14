@@ -34,7 +34,7 @@ class BaseColumnsHighChartsView(JSONView):
         """Return graph title."""
         try:
             return {'text': u'%s' % self.title}
-        except AttributeError:
+        except AttributeError:  # pragma: no cover
             raise NotImplementedError(  # pragma: no cover
                 'You should define self.title or self.get_title')
 
@@ -63,7 +63,7 @@ class BaseColumnsHighChartsView(JSONView):
     def get_yUnit(self):
         try:
             return self.yUnit
-        except AttributeError:
+        except AttributeError:  # pragma: no cover
             raise NotImplementedError(  # pragma: no cover
                 'Please define the yAxis unit (self.yUnit).')
 
@@ -120,6 +120,6 @@ class BaseColumnsHighChartsView(JSONView):
         """
         try:
             return self.providers
-        except AttributeError:
+        except AttributeError:  # pragma: no cover
             raise NotImplementedError(  # pragma: no cover
                 'You should define self.providers of self.get_providers.')

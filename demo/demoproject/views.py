@@ -4,6 +4,7 @@ from itertools import islice
 from django.views.generic import TemplateView
 
 from chartjs.colors import next_color, COLORS
+from chartjs.views.columns import BaseColumnsHighChartsView
 from chartjs.views.lines import BaseLineChartView, HighchartPlotLineChartView
 from chartjs.views.pie import HighChartPieView, HighChartDonutView
 
@@ -38,6 +39,16 @@ class ChartMixin(object):
         return next_color(colors)
 
 
+class ColumnHighChartJSONView(ChartMixin, BaseColumnsHighChartsView):
+    title = 'Column Highchart test'
+    yUnit = '%'
+    providers = ['All']
+    credits = False
+
+    def get_data(self):
+        return [super(ColumnHighChartJSONView, self).get_data()]
+
+
 class LineChartJSONView(ChartMixin, BaseLineChartView):
     pass
 
@@ -57,6 +68,7 @@ class DonutHighChartJSONView(ChartMixin, HighChartDonutView):
 # Pre-configured views.
 colors = ColorsView.as_view()
 
+column_highchart_json = ColumnHighChartJSONView.as_view()
 line_chart = TemplateView.as_view(template_name='line_chart.html')
 line_chart_json = LineChartJSONView.as_view()
 line_highchart_json = LineHighChartJSONView.as_view()

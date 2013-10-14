@@ -30,6 +30,14 @@ class ColorTestCase(TestCase):
 
 
 class HighChartJSTestCase(TestCase):
+
+    def test_column_chartjs_json(self):
+        resp = self.client.get(reverse('column_highchart_json'))
+        try:
+            json.loads(decode(resp.content))
+        except ValueError:
+            self.fail("%r is not valid json" % self.resp.content)
+
     def test_list_chartjs_json(self):
         resp = self.client.get(reverse('line_highchart_json'))
         try:
