@@ -1,0 +1,6 @@
+ Django
+ flake8
+ django-nose
+ coverage
+ nose
+ rednose

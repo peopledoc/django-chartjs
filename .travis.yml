@@ -3,6 +3,7 @@ python:
     - "2.7"
     - "3.3"
 install:
+    - pip install -r test-requirements.pip
     - python setup.py develop
     - (cd demo; python setup.py develop)
 script: flake8 chartjs && demo test demoproject

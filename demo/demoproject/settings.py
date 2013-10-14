@@ -85,8 +85,6 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = ['--verbose',
              '--nocapture',
              '--rednose',
-             '--with-id',  # allows --failed which only reruns failed tests
-             '--id-file=%s' % join(data_dir, 'noseids'),
              '--with-doctest',
              '--with-xunit',
              '--xunit-file=%s' % join(data_dir, 'nosetests.xml'),
