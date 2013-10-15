@@ -17,7 +17,7 @@ class HighChartsView(JSONView):
 
     def get_context_data(self):
         data = {}
-        data['title'] = {'text': self.title}
+        data['title'] = {'text': unicode(self.title)}
         data['plotOptions'] = self.get_plot_options()
         data['legend'] = self.get_legend()
         return data
