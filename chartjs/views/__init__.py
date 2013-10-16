@@ -1,3 +1,5 @@
+#-*- coding: utf-8 -*-
+from six import text_type
 from ..colors import next_color
 from .base import JSONView
 
@@ -17,7 +19,7 @@ class HighChartsView(JSONView):
 
     def get_context_data(self):
         data = {}
-        data['title'] = {'text': self.title}
+        data['title'] = {'text': text_type(self.title)}
         data['plotOptions'] = self.get_plot_options()
         data['legend'] = self.get_legend()
         return data

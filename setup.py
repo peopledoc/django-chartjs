@@ -33,5 +33,5 @@ if __name__ == '__main__':  # ``import setup`` doesn't trigger setup().
         packages=find_packages(),
         include_package_data=True,
         zip_safe=False,
-        install_requires=[]  # depends on Django
+        install_requires=['six']  # depends on Django
     )

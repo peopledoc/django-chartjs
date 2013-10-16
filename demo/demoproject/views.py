@@ -2,6 +2,7 @@
 from random import shuffle, randint
 from itertools import islice
 from django.views.generic import TemplateView
+from django.utils.translation import ugettext_lazy as _
 
 from chartjs.colors import next_color, COLORS
 from chartjs.views.columns import BaseColumnsHighChartsView
@@ -40,7 +41,7 @@ class ChartMixin(object):
 
 
 class ColumnHighChartJSONView(ChartMixin, BaseColumnsHighChartsView):
-    title = 'Column Highchart test'
+    title = _('Column Highchart test')
     yUnit = '%'
     providers = ['All']
     credits = False
