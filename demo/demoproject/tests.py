@@ -34,9 +34,12 @@ class HighChartJSTestCase(TestCase):
     def test_column_chartjs_json(self):
         resp = self.client.get(reverse('column_highchart_json'))
         try:
-            json.loads(decode(resp.content))
+            data = json.loads(decode(resp.content))
         except ValueError:
             self.fail("%r is not valid json" % self.resp.content)
+        self.assertIn('title', data)
+        self.assertIn('text', data['title'])
+        self.assertEqual(data['title']['text'], 'Column Highchart test')
 
     def test_list_chartjs_json(self):
         resp = self.client.get(reverse('line_highchart_json'))
