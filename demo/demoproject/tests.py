@@ -40,6 +40,9 @@ class HighChartJSTestCase(TestCase):
         self.assertIn('title', data)
         self.assertIn('text', data['title'])
         self.assertEqual(data['title']['text'], 'Column Highchart test')
+        self.assertIn('credits', data)
+        credits = data['credits']
+        self.assertEqual(credits['enabled'], False)
 
     def test_list_chartjs_json(self):
         resp = self.client.get(reverse('line_highchart_json'))
@@ -50,6 +53,11 @@ class HighChartJSTestCase(TestCase):
 
         self.assertIn('series', data)
         self.assertNotIn('datasets', data)
+        self.assertIn('credits', data)
+        credits = data['credits']
+        self.assertEqual(credits['enabled'], True)
+        self.assertEqual(credits['href'], 'http://example.com')
+        self.assertEqual(credits['text'], 'Novapost Team')
 
     def test_pie_chartjs_json(self):
         resp = self.client.get(reverse('pie_highchart_json'))

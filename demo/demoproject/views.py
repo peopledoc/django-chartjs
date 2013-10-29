@@ -44,7 +44,7 @@ class ColumnHighChartJSONView(ChartMixin, BaseColumnsHighChartsView):
     title = _('Column Highchart test')
     yUnit = '%'
     providers = ['All']
-    credits = False
+    credits = {"enabled": False}
 
     def get_data(self):
         return [super(ColumnHighChartJSONView, self).get_data()]
@@ -55,7 +55,12 @@ class LineChartJSONView(ChartMixin, BaseLineChartView):
 
 
 class LineHighChartJSONView(ChartMixin, HighchartPlotLineChartView):
-    pass
+    # special - line charts credits are personalized
+    credits = {
+        'enabled': True,
+        'href': 'http://example.com',
+        'text': 'Novapost Team',
+    }
 
 
 class PieHighChartJSONView(ChartMixin, HighChartPieView):
