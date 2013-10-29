@@ -7,6 +7,7 @@ from .base import JSONView
 class HighChartsView(JSONView):
     title = None
     y_axis_title = None
+    credits = {'enabled': True}
 
     def get_colors(self):
         return next_color()
@@ -22,6 +23,7 @@ class HighChartsView(JSONView):
         data['title'] = {'text': text_type(self.title)}
         data['plotOptions'] = self.get_plot_options()
         data['legend'] = self.get_legend()
+        data['credits'] = self.credits
         return data
 
     def get_data(self):

@@ -10,7 +10,7 @@ class BaseColumnsHighChartsView(JSONView):
     get_data() to get started.
     """
     providers = {}
-    credits = True
+    credits = {'enabled': True}
 
     def get_context_data(self):
         """Return graph configuration."""
@@ -21,9 +21,8 @@ class BaseColumnsHighChartsView(JSONView):
                 'yAxis': self.get_yAxis(),
                 'tooltip': self.get_tooltip(),
                 'plotOptions': self.get_plotOptions(),
-                'series': self.get_series()}
-        if not self.credits:
-            data['credits'] = {'enabled': False}
+                'series': self.get_series(),
+                'credits': self.credits}
         return data
 
     def get_type(self):
