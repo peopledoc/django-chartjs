@@ -1,10 +1,12 @@
 Changelog
 =========
 
-0.4 (unreleased)
+1.0 (2013-12-12)
 ----------------
 
-- Nothing changed yet.
+- Add documentation
+- Add Python 3 support
+- Add an option to change / or remove credits
 
 
 0.3 (2013-10-14)
