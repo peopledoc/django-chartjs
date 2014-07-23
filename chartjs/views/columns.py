@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Tools to build Columns HighCharts parameters."""
-from .base import JSONView
+from . import HighChartsView
 
 
-class BaseColumnsHighChartsView(JSONView):
+class BaseColumnsHighChartsView(HighChartsView):
     """Base Class to generate Column HighCharts configuration.
 
     Define at least title, yUnit, providers, get_labels() and
@@ -14,15 +14,15 @@ class BaseColumnsHighChartsView(JSONView):
 
     def get_context_data(self):
         """Return graph configuration."""
-        data = {'chart': self.get_type(),
-                'title': self.get_title(),
-                'subtitle': self.get_subtitle(),
-                'xAxis': self.get_xAxis(),
-                'yAxis': self.get_yAxis(),
-                'tooltip': self.get_tooltip(),
-                'plotOptions': self.get_plotOptions(),
-                'series': self.get_series(),
-                'credits': self.credits}
+        data = super(BaseColumnsHighChartsView, self).get_context_data()
+        data.update({
+            'chart': self.get_type(),
+            'subtitle': self.get_subtitle(),
+            'xAxis': self.get_xAxis(),
+            'yAxis': self.get_yAxis(),
+            'tooltip': self.get_tooltip(),
+            'series': self.get_series(),
+        })
         return data
 
     def get_type(self):
@@ -88,9 +88,11 @@ class BaseColumnsHighChartsView(JSONView):
             'useHTML': True
         }
 
-    def get_plotOptions(self):
+    def get_plot_options(self):
         """Return plotOptions configuration."""
-        return {'column': {'pointPadding': 0.2, 'borderWidth': 0}}
+        options = super(BaseColumnsHighChartsView, self).get_plot_options()
+        options.update({'column': {'pointPadding': 0.2, 'borderWidth': 0}})
+        return options
 
     def get_series(self):
         """Generate HighCharts series from providers and data."""
