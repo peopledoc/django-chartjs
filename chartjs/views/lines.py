@@ -2,7 +2,7 @@
 """Tools to build Line charts parameters."""
 from .base import JSONView
 from ..colors import next_color
-from . import HighChartsView
+from . import HighchartsView
 
 
 class BaseLineChartView(JSONView):
@@ -49,14 +49,14 @@ class BaseLineChartView(JSONView):
         return []
 
 
-class HighchartPlotLineChartView(HighChartsView):
+class HighchartsLineView(HighchartsView):
     y_axis_title = None
 
     def get_y_axis_options(self):
         return {'title': {'text': u'%s' % self.y_axis_title}}
 
     def get_context_data(self):
-        data = super(HighchartPlotLineChartView, self).get_context_data()
+        data = super(HighchartsLineView, self).get_context_data()
         data['labels'] = self.get_labels()
         data['series'] = self.get_series()
         data['yAxis'] = self.get_y_axis_options()

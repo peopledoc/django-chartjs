@@ -5,9 +5,9 @@ from django.views.generic import TemplateView
 from django.utils.translation import ugettext_lazy as _
 
 from chartjs.colors import next_color, COLORS
-from chartjs.views.columns import BaseColumnsHighChartsView
-from chartjs.views.lines import BaseLineChartView, HighchartPlotLineChartView
-from chartjs.views.pie import HighChartPieView, HighChartDonutView
+from chartjs.views.columns import HighchartsColumnView
+from chartjs.views.lines import BaseLineChartView, HighchartsLineView
+from chartjs.views.pie import HighchartsPieView, HighchartsDonutView
 
 
 class ColorsView(TemplateView):
@@ -40,7 +40,7 @@ class ChartMixin(object):
         return next_color(colors)
 
 
-class ColumnHighChartJSONView(ChartMixin, BaseColumnsHighChartsView):
+class ColumnHighChartJSONView(ChartMixin, HighchartsColumnView):
     title = _('Column Highchart test')
     yUnit = '%'
     providers = ['All']
@@ -54,7 +54,7 @@ class LineChartJSONView(ChartMixin, BaseLineChartView):
     pass
 
 
-class LineHighChartJSONView(ChartMixin, HighchartPlotLineChartView):
+class LineHighChartJSONView(ChartMixin, HighchartsLineView):
     # special - line charts credits are personalized
     credits = {
         'enabled': True,
@@ -63,11 +63,11 @@ class LineHighChartJSONView(ChartMixin, HighchartPlotLineChartView):
     }
 
 
-class PieHighChartJSONView(ChartMixin, HighChartPieView):
+class PieHighChartJSONView(ChartMixin, HighchartsPieView):
     pass
 
 
-class DonutHighChartJSONView(ChartMixin, HighChartDonutView):
+class DonutHighChartJSONView(ChartMixin, HighchartsDonutView):
     pass
 
 

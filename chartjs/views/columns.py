@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Tools to build Columns HighCharts parameters."""
-from . import HighChartsView
+from . import HighchartsView
 
 
-class BaseColumnsHighChartsView(HighChartsView):
+class HighchartsColumnView(HighchartsView):
     """Base Class to generate Column HighCharts configuration.
 
     Define at least title, yUnit, providers, get_labels() and
@@ -14,7 +14,7 @@ class BaseColumnsHighChartsView(HighChartsView):
 
     def get_context_data(self):
         """Return graph configuration."""
-        data = super(BaseColumnsHighChartsView, self).get_context_data()
+        data = super(HighchartsColumnView, self).get_context_data()
         data.update({
             'chart': self.get_type(),
             'subtitle': self.get_subtitle(),
@@ -90,7 +90,7 @@ class BaseColumnsHighChartsView(HighChartsView):
 
     def get_plot_options(self):
         """Return plotOptions configuration."""
-        options = super(BaseColumnsHighChartsView, self).get_plot_options()
+        options = super(HighchartsColumnView, self).get_plot_options()
         options.update({'column': {'pointPadding': 0.2, 'borderWidth': 0}})
         return options
 

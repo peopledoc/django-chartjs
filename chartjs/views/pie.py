@@ -1,15 +1,15 @@
-from . import HighChartsView
+from . import HighchartsView
 
 
-class HighChartPieView(HighChartsView):
+class HighchartsPieView(HighchartsView):
 
     def get_context_data(self):
-        data = super(HighChartPieView, self).get_context_data()
+        data = super(HighchartsPieView, self).get_context_data()
         data['series'] = self.get_series()
         return data
 
     def get_series(self):
-        series = super(HighChartPieView, self).get_series()
+        series = super(HighchartsPieView, self).get_series()
         for serie in series:
             serie.update({'type': 'pie'})
         return series
@@ -18,16 +18,16 @@ class HighChartPieView(HighChartsView):
         return []
 
 
-class HighChartDonutView(HighChartPieView):
+class HighchartsDonutView(HighchartsPieView):
     inner_size = '50%'
 
     def get_series(self):
-        series = super(HighChartDonutView, self).get_series()
+        series = super(HighchartsDonutView, self).get_series()
         for serie in series:
             serie.update({"innerSize": self.inner_size})
         return series
 
     def get_plot_options(self):
-        options = super(HighChartDonutView, self).get_plot_options()
+        options = super(HighchartsDonutView, self).get_plot_options()
         options.update({'pie': {"showInLegend": True}})
         return options

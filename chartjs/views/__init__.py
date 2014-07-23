@@ -4,7 +4,7 @@ from ..colors import next_color
 from .base import JSONView
 
 
-class HighChartsView(JSONView):
+class HighchartsView(JSONView):
     title = None
     y_axis_title = None
     credits = {'enabled': True}
