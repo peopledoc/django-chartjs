@@ -9,6 +9,14 @@ class HighchartsView(JSONView):
     y_axis_title = None
     credits = {'enabled': True}
 
+    def get_title(self):
+        """Return graph title."""
+        try:
+            return self.title
+        except AttributeError:  # pragma: no cover
+            raise NotImplementedError(  # pragma: no cover
+                'You should define self.title or self.get_title')
+
     def get_colors(self):
         return next_color()
 
@@ -20,7 +28,7 @@ class HighchartsView(JSONView):
 
     def get_context_data(self):
         data = {}
-        data['title'] = {'text': text_type(self.title)}
+        data['title'] = {'text': text_type(self.get_title())}
         data['plotOptions'] = self.get_plot_options()
         data['legend'] = self.get_legend()
         data['credits'] = self.credits

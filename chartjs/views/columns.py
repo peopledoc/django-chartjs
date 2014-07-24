@@ -29,14 +29,6 @@ class HighchartsColumnView(HighchartsView):
         """Return graph type."""
         return {'type': 'column'}
 
-    def get_title(self):
-        """Return graph title."""
-        try:
-            return {'text': u'%s' % self.title}
-        except AttributeError:  # pragma: no cover
-            raise NotImplementedError(  # pragma: no cover
-                'You should define self.title or self.get_title')
-
     def get_subtitle(self):
         """Return graph subtitle."""
         subtitle = u'%s' % getattr(self, 'subtitle', '')
