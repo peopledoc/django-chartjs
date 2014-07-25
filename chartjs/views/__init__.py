@@ -32,6 +32,7 @@ class HighchartsView(JSONView):
         data['plotOptions'] = self.get_plot_options()
         data['legend'] = self.get_legend()
         data['credits'] = self.credits
+        data['series'] = self.get_series()
         return data
 
     def get_data(self):

@@ -21,7 +21,6 @@ class HighchartsColumnView(HighchartsView):
             'xAxis': self.get_xAxis(),
             'yAxis': self.get_yAxis(),
             'tooltip': self.get_tooltip(),
-            'series': self.get_series(),
         })
         return data
 

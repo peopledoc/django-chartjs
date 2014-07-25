@@ -2,12 +2,6 @@ from . import HighchartsView
 
 
 class HighchartsPieView(HighchartsView):
-
-    def get_context_data(self):
-        data = super(HighchartsPieView, self).get_context_data()
-        data['series'] = self.get_series()
-        return data
-
     def get_series(self):
         series = super(HighchartsPieView, self).get_series()
         for serie in series:
