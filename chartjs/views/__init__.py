@@ -33,6 +33,7 @@ class HighchartsView(JSONView):
         data['legend'] = self.get_legend()
         data['credits'] = self.credits
         data['series'] = self.get_series()
+        data['drilldown'] = self.get_drilldown()
         return data
 
     def get_data(self):
@@ -56,3 +57,6 @@ class HighchartsView(JSONView):
                 serie['name'] = providers[i]
             series.append(serie)
         return series
+
+    def get_drilldown(self):
+        return []
