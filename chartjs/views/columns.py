@@ -16,22 +16,14 @@ class HighchartsColumnView(HighchartsView):
         """Return graph configuration."""
         data = super(HighchartsColumnView, self).get_context_data()
         data.update({
-            'chart': self.get_type(),
-            'subtitle': self.get_subtitle(),
             'xAxis': self.get_xAxis(),
             'yAxis': self.get_yAxis(),
-            'tooltip': self.get_tooltip(),
         })
         return data
 
     def get_type(self):
         """Return graph type."""
-        return {'type': 'column'}
-
-    def get_subtitle(self):
-        """Return graph subtitle."""
-        subtitle = u'%s' % getattr(self, 'subtitle', '')
-        return subtitle
+        return 'column'
 
     def get_xAxis(self):
         return {'categories': self.get_labels()}

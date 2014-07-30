@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from six import text_type
 from ..colors import next_color
 from .base import JSONView
@@ -17,6 +17,9 @@ class HighchartsView(JSONView):
             raise NotImplementedError(  # pragma: no cover
                 'You should define self.title or self.get_title')
 
+    def get_subtitle(self):
+        return getattr(self, 'subtitle', '')
+
     def get_colors(self):
         return next_color()
 
@@ -28,12 +31,21 @@ class HighchartsView(JSONView):
 
     def get_context_data(self):
         data = {}
-        data['title'] = {'text': text_type(self.get_title())}
+        data['chart'] = {
+            'type': self.get_type(),
+        }
+        data['title'] = {
+            'text': text_type(self.get_title()),
+        }
+        data['subtitle'] = {
+            'text': text_type(self.get_subtitle()),
+        }
         data['plotOptions'] = self.get_plot_options()
         data['legend'] = self.get_legend()
         data['credits'] = self.credits
         data['series'] = self.get_series()
         data['drilldown'] = self.get_drilldown()
+        data['tooltip'] = self.get_tooltip()
         return data
 
     def get_data(self):
@@ -60,3 +72,9 @@ class HighchartsView(JSONView):
 
     def get_drilldown(self):
         return []
+
+    def get_tooltip(self):
+        raise NotImplementedError()
+
+    def get_type(self):
+        raise NotImplementedError()
