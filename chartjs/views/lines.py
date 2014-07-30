@@ -52,6 +52,9 @@ class BaseLineChartView(JSONView):
 class HighchartsLineView(HighchartsView):
     y_axis_title = None
 
+    def get_type(self):
+        return 'line'
+
     def get_y_axis_options(self):
         return {'title': {'text': u'%s' % self.y_axis_title}}
 
