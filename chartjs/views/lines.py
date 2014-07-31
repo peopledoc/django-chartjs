@@ -10,7 +10,6 @@ class BaseLineChartView(JSONView):
 
     def get_context_data(self):
         data = {}
-        data['labels'] = self.get_labels()
         data['datasets'] = self.get_datasets()
         return data
 
@@ -51,18 +50,7 @@ class BaseLineChartView(JSONView):
 
 class HighchartsLineView(HighchartsView):
     y_axis_title = None
+    chart_type = 'line'
 
-    def get_type(self):
-        return 'line'
-
-    def get_y_axis_options(self):
+    def get_y_axis(self):
         return {'title': {'text': u'%s' % self.y_axis_title}}
-
-    def get_context_data(self):
-        data = super(HighchartsLineView, self).get_context_data()
-        data['labels'] = self.get_labels()
-        data['yAxis'] = self.get_y_axis_options()
-        return data
-
-    def get_providers(self):
-        return []

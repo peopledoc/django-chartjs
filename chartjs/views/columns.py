@@ -6,48 +6,26 @@ from . import HighchartsView
 class HighchartsColumnView(HighchartsView):
     """Base Class to generate Column HighCharts configuration.
 
-    Define at least title, yUnit, providers, get_labels() and
-    get_data() to get started.
+    Define at least title, y_unit, providers and get_data() to get started.
     """
     providers = {}
-    credits = {'enabled': True}
+    chart_type = 'column'
 
-    def get_context_data(self):
-        """Return graph configuration."""
-        data = super(HighchartsColumnView, self).get_context_data()
-        data.update({
-            'xAxis': self.get_xAxis(),
-            'yAxis': self.get_yAxis(),
-        })
-        return data
-
-    def get_type(self):
-        """Return graph type."""
-        return 'column'
-
-    def get_xAxis(self):
-        return {'categories': self.get_labels()}
-
-    def get_labels(self):
-        raise NotImplementedError(  # pragma: no cover
-            'You should return a labels list. '
-            '(i.e: ["January", ...])')
-
-    def get_yAxis(self):
+    def get_y_axis(self):
         return {'min': getattr(self, 'yMin', 0),
-                'title': self.get_yTitle()}
+                'title': self.get_y_title()}
 
-    def get_yTitle(self):
+    def get_y_title(self):
         """Return yAxis title."""
         subtitle = u'%s' % getattr(self, 'subtitle', '')
         return subtitle
 
-    def get_yUnit(self):
+    def get_y_unit(self):
         try:
-            return self.yUnit
+            return self.y_unit
         except AttributeError:  # pragma: no cover
             raise NotImplementedError(  # pragma: no cover
-                'Please define the yAxis unit (self.yUnit).')
+                'Please define the yAxis unit (self.y_unit).')
 
     def get_tooltip(self):
         """Return tooltip configuration."""
@@ -65,7 +43,7 @@ class HighchartsColumnView(HighchartsView):
                          <td style="padding:0">
                              <b>{point.y:.0f} %s</b>
                          </td>
-                     </tr>''' % self.get_yUnit(),
+                     </tr>''' % self.get_y_unit(),
             'footerFormat': '</table>',
             'shared': True,
             'useHTML': True
@@ -96,14 +74,3 @@ class HighchartsColumnView(HighchartsView):
         raise NotImplementedError(  # pragma: no cover
             'You should return a data list list. '
             '(i.e: [[25, 34, 0, 1, 50], ...]).')
-
-    def get_providers(self):
-        """Return the list of data series names.
-
-        Providers numbers should be equal to series numbers.
-        """
-        try:
-            return self.providers
-        except AttributeError:  # pragma: no cover
-            raise NotImplementedError(  # pragma: no cover
-                'You should define self.providers of self.get_providers.')

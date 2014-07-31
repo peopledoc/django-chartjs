@@ -2,8 +2,7 @@ from . import HighchartsView
 
 
 class HighchartsPieView(HighchartsView):
-    def get_type(self):
-        return 'pie'
+    chart_type = 'pie'
 
     def get_series(self):
         series = super(HighchartsPieView, self).get_series()

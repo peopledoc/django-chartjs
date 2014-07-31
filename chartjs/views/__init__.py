@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
+from itertools import izip_longest, takewhile
 from six import text_type
 from ..colors import next_color
 from .base import JSONView
 
 
 class HighchartsView(JSONView):
-    title = None
     y_axis_title = None
     credits = {'enabled': True}
 
@@ -19,6 +19,16 @@ class HighchartsView(JSONView):
 
     def get_subtitle(self):
         return getattr(self, 'subtitle', '')
+
+    def get_providers(self):
+        """Return the list of data series names.
+
+        Providers numbers should be equal to series numbers.
+        """
+        try:
+            return self.providers
+        except AttributeError:
+            return []
 
     def get_colors(self):
         return next_color()
@@ -46,6 +56,19 @@ class HighchartsView(JSONView):
         data['series'] = self.get_series()
         data['drilldown'] = self.get_drilldown()
         data['tooltip'] = self.get_tooltip()
+
+        labels = self.get_labels()
+        if labels:
+            data['labels'] = labels
+
+        x_axis = self.get_x_axis()
+        if x_axis:
+            data['xAxis'] = x_axis
+
+        y_axis = self.get_y_axis()
+        if y_axis:
+            data['yAxis'] = y_axis
+
         return data
 
     def get_data(self):
@@ -55,19 +78,25 @@ class HighchartsView(JSONView):
 
     def get_series(self):
         series = []
-        color_generator = self.get_colors()
-        data = self.get_data()
-        providers = self.get_providers()
-        num = len(providers)
-        for i, data in enumerate(self.get_data()):
-            color = tuple(next(color_generator))
-            serie = {
-                'color': "rgba(%d, %d, %d, 1)" % color,
-                'data': data
-            }
-            if i < num:
-                serie['name'] = providers[i]
+        # izip_longest rather than zip because get_providers and get_colors
+        # might be shorter than get_data (or completely empty)
+        zipped = izip_longest(
+            self.get_data(),
+            self.get_providers(),
+            self.get_colors(),
+        )
+
+        # Loop through data, names & colors for as long as we have data
+        # (get_colors might return a generator that produces values
+        # indefinitely)
+        for datum, name, color in takewhile(lambda x: x[0], zipped):
+            serie = {'data': datum}
+            if name:
+                serie['name'] = name
+            if color:
+                serie['color'] = "rgba(%d, %d, %d, 1)" % tuple(color)
             series.append(serie)
+
         return series
 
     def get_drilldown(self):
@@ -77,4 +106,16 @@ class HighchartsView(JSONView):
         raise NotImplementedError()
 
     def get_type(self):
-        raise NotImplementedError()
+        try:
+            return self.chart_type
+        except AttributeError:
+            raise NotImplementedError()
+
+    def get_labels(self):
+        return []
+
+    def get_x_axis(self):
+        return {'categories': self.get_labels()}
+
+    def get_y_axis(self):
+        return None
