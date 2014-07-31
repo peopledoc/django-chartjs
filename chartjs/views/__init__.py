@@ -8,6 +8,7 @@ from .base import JSONView
 class HighchartsView(JSONView):
     y_axis_title = None
     credits = {'enabled': True}
+    polar = False
 
     def get_title(self):
         """Return graph title."""
@@ -43,7 +44,9 @@ class HighchartsView(JSONView):
         data = {}
         data['chart'] = {
             'type': self.get_type(),
+            'polar': self.polar,
         }
+
         data['title'] = {
             'text': text_type(self.get_title()),
         }
