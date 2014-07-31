@@ -53,4 +53,11 @@ class HighchartsLineView(HighchartsView):
     chart_type = 'line'
 
     def get_y_axis(self):
-        return {'title': {'text': u'%s' % self.y_axis_title}}
+        y_axis = {}
+        if self.y_axis_title:
+            y_axis.update({
+                'title': {
+                    'text': u'%s' % self.y_axis_title,
+                }
+            })
+        return y_axis
