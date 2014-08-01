@@ -25,5 +25,5 @@ class HighchartsDonutView(HighchartsPieView):
 
     def get_plot_options(self):
         options = super(HighchartsDonutView, self).get_plot_options()
-        options.update({'pie': {"showInLegend": True}})
+        options['pie'].update({"showInLegend": True})
         return options

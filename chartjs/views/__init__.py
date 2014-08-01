@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collections import defaultdict
 from itertools import izip_longest, takewhile
 from six import text_type
 from ..colors import next_color
@@ -9,6 +10,7 @@ class HighchartsView(JSONView):
     y_axis_title = None
     credits = {'enabled': True}
     polar = False
+    stacking = None
 
     def get_title(self):
         """Return graph title."""
@@ -35,10 +37,15 @@ class HighchartsView(JSONView):
         return next_color()
 
     def get_legend(self):
-        return {}
+        return defaultdict(dict)
 
     def get_plot_options(self):
-        return {}
+        options = defaultdict(dict)
+        if self.stacking:
+            options[self.get_type()] = defaultdict(
+                dict, {'stacking': self.stacking},
+            )
+        return options
 
     def get_context_data(self):
         data = {}

@@ -52,7 +52,7 @@ class HighchartsColumnView(HighchartsView):
     def get_plot_options(self):
         """Return plotOptions configuration."""
         options = super(HighchartsColumnView, self).get_plot_options()
-        options.update({'column': {'pointPadding': 0.2, 'borderWidth': 0}})
+        options['column'].update({'pointPadding': 0.2, 'borderWidth': 0})
         return options
 
     def get_series(self):
