@@ -128,4 +128,4 @@ class HighchartsView(JSONView):
         return {'categories': self.get_labels()}
 
     def get_y_axis(self):
-        return None
+        return defaultdict(dict)
