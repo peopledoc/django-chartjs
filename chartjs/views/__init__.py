@@ -11,6 +11,7 @@ class HighchartsView(JSONView):
     credits = {'enabled': True}
     polar = False
     stacking = None
+    zoom_type = None
 
     def get_title(self):
         """Return graph title."""
@@ -49,10 +50,13 @@ class HighchartsView(JSONView):
 
     def get_context_data(self):
         data = {}
-        data['chart'] = {
-            'type': self.get_type(),
-            'polar': self.polar,
-        }
+        data['chart'] = {'type': self.get_type()}
+
+        if self.polar:
+            data['chart']['polar'] = self.polar,
+
+        if self.zoom_type:
+            data['chart']['zoomType'] = self.zoom_type
 
         data['title'] = {
             'text': text_type(self.get_title()),
@@ -64,8 +68,11 @@ class HighchartsView(JSONView):
         data['legend'] = self.get_legend()
         data['credits'] = self.credits
         data['series'] = self.get_series()
-        data['drilldown'] = self.get_drilldown()
         data['tooltip'] = self.get_tooltip()
+
+        drilldown = self.get_drilldown()
+        if drilldown:
+            data['drilldown'] = drilldown
 
         labels = self.get_labels()
         if labels:
@@ -125,7 +132,11 @@ class HighchartsView(JSONView):
         return []
 
     def get_x_axis(self):
-        return {'categories': self.get_labels()}
+        labels = self.get_labels()
+        x_axis = defaultdict(dict)
+        if labels:
+            x_axis.update(categories=labels)
+        return x_axis
 
     def get_y_axis(self):
         return defaultdict(dict)
