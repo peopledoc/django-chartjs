@@ -55,16 +55,6 @@ class HighchartsColumnView(HighchartsView):
         options['column'].update({'pointPadding': 0.2, 'borderWidth': 0})
         return options
 
-    def get_series(self):
-        """Generate HighCharts series from providers and data."""
-        series = []
-        data = self.get_data()
-        providers = self.get_providers()
-        for i, d in enumerate(data):
-            series.append({'name': providers[i],
-                           'data': d})
-        return series
-
     def get_data(self):
         """Return a list of series [[25, 34, 0, 1, 50], ...]).
 
