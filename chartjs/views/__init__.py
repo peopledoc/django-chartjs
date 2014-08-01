@@ -22,12 +22,13 @@ class HighchartsView(JSONView):
                 'You should define self.title or self.get_title')
 
     def get_subtitle(self):
-        return getattr(self, 'subtitle', '')
+        return getattr(self, 'subtitle', None)
 
     def get_providers(self):
         """Return the list of data series names.
 
-        Providers numbers should be equal to series numbers.
+        Providers numbers should be equal to series numbers, otherwise there
+        may be series in the chart with no name.
         """
         try:
             return self.providers
@@ -51,6 +52,12 @@ class HighchartsView(JSONView):
     def get_context_data(self):
         data = {}
         data['chart'] = {'type': self.get_type()}
+        data['credits'] = self.credits
+        data['legend'] = self.get_legend()
+        data['plotOptions'] = self.get_plot_options()
+        data['series'] = self.get_series()
+        data['title'] = {'text': text_type(self.get_title())}
+        data['tooltip'] = self.get_tooltip()
 
         if self.polar:
             data['chart']['polar'] = self.polar,
@@ -58,37 +65,34 @@ class HighchartsView(JSONView):
         if self.zoom_type:
             data['chart']['zoomType'] = self.zoom_type
 
-        data['title'] = {
-            'text': text_type(self.get_title()),
-        }
-        data['subtitle'] = {
-            'text': text_type(self.get_subtitle()),
-        }
-        data['plotOptions'] = self.get_plot_options()
-        data['legend'] = self.get_legend()
-        data['credits'] = self.credits
-        data['series'] = self.get_series()
-        data['tooltip'] = self.get_tooltip()
+        subtitle = self.get_subtitle()
+        if subtitle is not None:
+            data['subtitle'] = {'text': text_type(subtitle)}
 
         drilldown = self.get_drilldown()
-        if drilldown:
+        if drilldown is not None:
             data['drilldown'] = drilldown
 
         labels = self.get_labels()
-        if labels:
+        if labels is not None:
             data['labels'] = labels
 
         x_axis = self.get_x_axis()
-        if x_axis:
+        if x_axis is not None:
             data['xAxis'] = x_axis
 
         y_axis = self.get_y_axis()
-        if y_axis:
+        if y_axis is not None:
             data['yAxis'] = y_axis
 
         return data
 
     def get_data(self):
+        """Return a list of series [[25, 34, 0, 1, 50], ...]).
+
+        In the same order as providers and with the same series length of
+        xAxis.
+        """
         raise NotImplementedError(  # pragma: no cover
             'You should return a data list list. '
             '(i.e: [[25, 34, 0, 1, 50], ...]).')
@@ -117,7 +121,7 @@ class HighchartsView(JSONView):
         return series
 
     def get_drilldown(self):
-        return []
+        return None
 
     def get_tooltip(self):
         raise NotImplementedError()
@@ -129,14 +133,21 @@ class HighchartsView(JSONView):
             raise NotImplementedError()
 
     def get_labels(self):
-        return []
+        return None
 
     def get_x_axis(self):
         labels = self.get_labels()
         x_axis = defaultdict(dict)
-        if labels:
+        if labels is not None:
             x_axis.update(categories=labels)
         return x_axis
 
     def get_y_axis(self):
-        return defaultdict(dict)
+        y_axis = defaultdict(dict)
+        if self.y_axis_title is not None:
+            y_axis.update({
+                'title': {
+                    'text': text_type(self.y_axis_title),
+                }
+            })
+        return y_axis

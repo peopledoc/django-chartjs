@@ -10,9 +10,6 @@ class HighchartsPieView(HighchartsView):
             serie.update({'type': 'pie'})
         return series
 
-    def get_providers(self):
-        return []
-
 
 class HighchartsDonutView(HighchartsPieView):
     inner_size = '50%'

@@ -6,26 +6,20 @@ from . import HighchartsView
 class HighchartsColumnView(HighchartsView):
     """Base Class to generate Column HighCharts configuration.
 
-    Define at least title, y_unit, providers and get_data() to get started.
+    Define at least title and get_data() to get started.
     """
-    providers = {}
     chart_type = 'column'
+    y_unit = ''
 
     def get_y_axis(self):
-        return {'min': getattr(self, 'yMin', 0),
-                'title': self.get_y_title()}
-
-    def get_y_title(self):
-        """Return yAxis title."""
-        subtitle = u'%s' % getattr(self, 'subtitle', '')
-        return subtitle
+        y_axis = super(HighchartsColumnView, self).get_y_axis()
+        y_axis['min'] = getattr(self, 'yMin', 0)
+        return y_axis
 
     def get_y_unit(self):
-        try:
-            return self.y_unit
-        except AttributeError:  # pragma: no cover
-            raise NotImplementedError(  # pragma: no cover
-                'Please define the yAxis unit (self.y_unit).')
+        # Either change the y_unit attribute or override this method on
+        # subclasses to have the y axis unit appear in the tooltip.
+        return self.y_unit
 
     def get_tooltip(self):
         """Return tooltip configuration."""
@@ -54,13 +48,3 @@ class HighchartsColumnView(HighchartsView):
         options = super(HighchartsColumnView, self).get_plot_options()
         options['column'].update({'pointPadding': 0.2, 'borderWidth': 0})
         return options
-
-    def get_data(self):
-        """Return a list of series [[25, 34, 0, 1, 50], ...]).
-
-        In the same order as providers and with the same serie length
-        of xAxis.
-        """
-        raise NotImplementedError(  # pragma: no cover
-            'You should return a data list list. '
-            '(i.e: [[25, 34, 0, 1, 50], ...]).')

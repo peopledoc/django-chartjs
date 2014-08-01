@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Tools to build Line charts parameters."""
+from six import text_type
 from .base import JSONView
 from ..colors import next_color
 from . import HighchartsView
@@ -49,15 +50,4 @@ class BaseLineChartView(JSONView):
 
 
 class HighchartsLineView(HighchartsView):
-    y_axis_title = None
     chart_type = 'line'
-
-    def get_y_axis(self):
-        y_axis = {}
-        if self.y_axis_title:
-            y_axis.update({
-                'title': {
-                    'text': u'%s' % self.y_axis_title,
-                }
-            })
-        return y_axis
