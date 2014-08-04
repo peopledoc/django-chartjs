@@ -59,6 +59,10 @@ class HighchartsView(JSONView):
         data['title'] = {'text': text_type(self.get_title())}
         data['tooltip'] = self.get_tooltip()
 
+        # 'pane' only applies to polar or gauge charts
+        if self.polar or self.get_type() in ['gauge', 'solidgauge']:
+            data['pane'] = self.get_pane()
+
         if self.polar:
             data['chart']['polar'] = self.polar,
 
@@ -151,3 +155,6 @@ class HighchartsView(JSONView):
                 }
             })
         return y_axis
+
+    def get_pane(self):
+        return defaultdict(dict)
