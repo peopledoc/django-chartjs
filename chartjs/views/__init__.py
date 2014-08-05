@@ -64,7 +64,7 @@ class HighchartsView(JSONView):
             data['pane'] = self.get_pane()
 
         if self.polar:
-            data['chart']['polar'] = self.polar,
+            data['chart']['polar'] = self.polar
 
         if self.zoom_type:
             data['chart']['zoomType'] = self.zoom_type
