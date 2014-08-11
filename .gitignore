@@ -9,3 +9,4 @@ var/
 /build/
 /local/
 /.tox/
+/dist/
