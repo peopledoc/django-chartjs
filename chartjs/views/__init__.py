@@ -49,9 +49,14 @@ class HighchartsView(JSONView):
             )
         return options
 
-    def get_context_data(self):
+    def get_chart_options(self):
+        options = defaultdict(dict)
+        options['type'] = self.get_type()
+        return options
+
+    def get_context_data(self, **kwargs):
         data = {}
-        data['chart'] = {'type': self.get_type()}
+        data['chart'] = self.get_chart_options()
         data['credits'] = self.credits
         data['legend'] = self.get_legend()
         data['plotOptions'] = self.get_plot_options()
