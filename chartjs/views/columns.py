@@ -12,18 +12,21 @@ class BaseColumnsHighChartsView(JSONView):
     providers = {}
     credits = {'enabled': True}
 
-    def get_context_data(self):
+    def get_context_data(self, **kwargs):
         """Return graph configuration."""
-        data = {'chart': self.get_type(),
-                'title': self.get_title(),
-                'subtitle': self.get_subtitle(),
-                'xAxis': self.get_xAxis(),
-                'yAxis': self.get_yAxis(),
-                'tooltip': self.get_tooltip(),
-                'plotOptions': self.get_plotOptions(),
-                'series': self.get_series(),
-                'credits': self.credits}
-        return data
+        context = super(BaseColumnsHighChartsView, self).get_context_data(**kwargs)
+        context.update({
+            'chart': self.get_type(),
+            'title': self.get_title(),
+            'subtitle': self.get_subtitle(),
+            'xAxis': self.get_xAxis(),
+            'yAxis': self.get_yAxis(),
+            'tooltip': self.get_tooltip(),
+            'plotOptions': self.get_plotOptions(),
+            'series': self.get_series(),
+            'credits': self.credits
+            })
+        return context
 
     def get_type(self):
         """Return graph type."""

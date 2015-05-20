@@ -3,8 +3,8 @@ from . import HighChartsView
 
 class HighChartPieView(HighChartsView):
 
-    def get_context_data(self):
-        data = super(HighChartPieView, self).get_context_data()
+    def get_context_data(self, **kwargs):
+        data = super(HighChartPieView, self).get_context_data(**kwargs)
         data['series'] = self.get_series()
         return data
 
