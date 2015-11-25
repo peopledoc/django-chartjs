@@ -2,7 +2,7 @@
 Django Chartjs
 ##############
 
-Django Chartjs lets you manage charts in you Django application.
+Django Chartjs lets you manage charts in your Django application.
 
 .. image:: https://secure.travis-ci.org/novapost/django-chartjs.png?branch=master
    :alt: Build Status
@@ -17,8 +17,8 @@ Django Chartjs lets you manage charts in you Django application.
 
 This is compatible with Chart.js and Highcharts JS librairies.
 
-Using a set of predefined Class Based Views your are able to get
-started after writting just your SQL query.
+Using a set of predefined Class Based Views you are able to get
+started after writing just your SQL query.
 
 * Authors: Rémy Hubscher and `contributors
   <https://github.com/novagile/django-chartjs/graphs/contributors>`_
@@ -94,7 +94,7 @@ A simple Line Chart example.
             return ["January", "February", "March", "April", "May", "June", "July"]
     
         def get_data(self):
-            """Return 3 dataset to plot."""
+            """Return 3 datasets to plot."""
     
             return [[75, 44, 92, 11, 44, 95, 35],
                     [41, 92, 18, 3, 73, 87, 92],
@@ -113,6 +113,6 @@ A simple Line Chart example.
 
 It is that simple!
 
-For other example, don't hesitate to look at the demo project.
+For other examples, don't hesitate to look at the demo project.
 
-Also contribute your demo!
+Also, feel free to contribute your demo!
