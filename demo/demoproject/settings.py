@@ -4,6 +4,7 @@ from os.path import abspath, dirname, join
 
 # Configure some relative directories.
 demoproject_dir = dirname(abspath(__file__))
+BASE_DIR = demoproject_dir
 demo_dir = dirname(demoproject_dir)
 root_dir = dirname(demo_dir)
 data_dir = join(root_dir, 'var')
@@ -49,15 +50,32 @@ INSTALLED_APPS = (
     'django_nose',
 )
 
+USE_I18N = False
+
 TEMPLATE_CONTEXT_PROCESSORS = [
     "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request",
+]
+
+TEMPLATES = [{
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': [join(BASE_DIR, '', 'templates')],
+    'APP_DIRS': True,
+    'OPTIONS': {
+        'context_processors': [
+            'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.contrib.messages.context_processors.messages',
+
+        ],
+    },
+},
 ]
 
 # Default middlewares. You may alter the list later.
