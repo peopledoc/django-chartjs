@@ -1,10 +1,12 @@
 Changelog
 =========
 
-1.1 (unreleased)
+1.1 (2016-10-07)
 ----------------
 
-- Nothing changed yet.
+- Add python 3.4/3.5 support #23
+- Update README.rst #20
+- Multiple get_data() Calls from API #16
 
 
 1.0 (2013-12-12)
