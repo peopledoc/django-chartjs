@@ -1,12 +1,17 @@
-from django.conf.urls import patterns, url
+from pkg_resources import parse_version
+import django
+from django.conf.urls import url
+django_version = parse_version(django.get_version())
+if django_version <= parse_version('1.9'):
+    from django.conf.urls import patterns
+
 from django.views.generic import TemplateView
 
 from . import views
 
 home = TemplateView.as_view(template_name='home.html')
 
-urlpatterns = patterns(
-    '',
+patterns_list = [
     url(r'^$', home, name='home'),
     url(r'^colors/$', views.colors, name='colors'),
 
@@ -27,4 +32,12 @@ urlpatterns = patterns(
         name='pie_highchart_json'),
     url(r'^donut_highchart/json/$', views.donut_highchart_json,
         name='donut_highchart_json'),
-)
+]
+
+if django_version <= parse_version('1.9'):
+    urlpatterns = patterns(
+        '',
+        *patterns_list
+    )
+else:
+    urlpatterns = patterns_list
