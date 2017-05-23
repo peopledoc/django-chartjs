@@ -25,13 +25,14 @@ class BaseLineChartView(JSONView):
         num = len(providers)
         for i, entry in enumerate(data):
             color = tuple(next(color_generator))
-            dataset = {'fillColor': "rgba(%d, %d, %d, 0.5)" % color,
-                       'strokeColor': "rgba(%d, %d, %d, 1)" % color,
-                       'pointColor': "rgba(%d, %d, %d, 1)" % color,
-                       'pointStrokeColor': "#fff",
+            dataset = {'backgroundColor': "rgba(%d, %d, %d, 0.5)" % color,
+                       'borderColor': "rgba(%d, %d, %d, 1)" % color,
+                       'pointBackgroundColor': "rgba(%d, %d, %d, 1)" % color,
+                       'pointBorderColor': "#fff",
                        'data': entry}
             if i < num:
-                dataset['name'] = providers[i]
+                dataset['label'] = providers[i]  # series labels for Chart.js
+                dataset['name'] = providers[i]  # HighCharts may need this
             datasets.append(dataset)
         return datasets
 

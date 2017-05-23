@@ -68,7 +68,9 @@ A simple Line Chart example.
             <script type="text/javascript">
                 $.get('{% url "line_chart_json" %}', function(data) {
                     var ctx = $("#myChart").get(0).getContext("2d");
-                    new Chart(ctx).Line(data);
+                    new Chart(ctx, {
+                        type: 'line', data: data
+                    });
                 });
             </script>
         </body>
@@ -87,9 +89,13 @@ A simple Line Chart example.
     
     class LineChartJSONView(BaseLineChartView):
         def get_labels(self):
-            """Return 7 labels."""
+            """Return 7 labels for the x-axis."""
             return ["January", "February", "March", "April", "May", "June", "July"]
-    
+
+        def get_providers(self):
+            """Return names of datasets."""
+            return ["Central", "Eastside", "Westside"]
+
         def get_data(self):
             """Return 3 datasets to plot."""
     
