@@ -59,6 +59,7 @@ class HighchartPlotLineChartView(HighChartsView):
     def get_context_data(self):
         data = super(HighchartPlotLineChartView, self).get_context_data()
         data['labels'] = self.get_labels()
+        data['xAxis'] = {"categories": self.get_labels()}
         data['series'] = self.get_series()
         data['yAxis'] = self.get_y_axis_options()
         return data
