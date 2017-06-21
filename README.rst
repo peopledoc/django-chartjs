@@ -12,7 +12,7 @@ Django Chartjs lets you manage charts in your Django application.
    :target: https://pypi.python.org/pypi/django-chartjs/1.1
 
 
-This is compatible with Chart.js and Highcharts JS librairies.
+This is compatible with Chart.js and Highcharts JS libraries.
 
 Using a set of predefined Class Based Views you are able to get
 started after writing just your SQL query.
@@ -116,6 +116,6 @@ A simple Line Chart example.
 
 It is that simple!
 
-For other examples, don't hesitate to look at the demo project.
+For other examples including a HighCharts line chart, don't hesitate to look at the demo project.
 
 Also, feel free to contribute your demo!

@@ -1,23 +1,46 @@
 {% load staticfiles %}
 <html>
-	<head>
-        <title>django-chartjs line chart demo</title>
-	<!--[if lte IE 8]>
-	    <script src="{% static 'js/excanvas.js' %}"></script>
-        <![endif]-->
-	</head>
-	<body>
-        <h1>Some Line Charts loaded in Ajax!</h1>
-        
-        <canvas id="myChart" width="500" height="400"></canvas>
+<head>
+  <title>django-chartjs line chart demo</title>
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
-        <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
-        <script type="text/javascript">
-            $.get('{% url 'line_chart_json' %}', function(data) {
-                var ctx = $("#myChart").get(0).getContext("2d");
-                new Chart(ctx).Line(data);
-            });
-        </script>
-    </body>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+
+  <!--[if lte IE 8]>
+	<script src="{% static 'js/excanvas.js' %}"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <h1>Some Line Charts loaded in Ajax!</h1>
+
+  <h2>Chart.js</h2>
+
+  <canvas id="myChart" width="500" height="500"></canvas>
+
+  <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+  <script type="text/javascript">
+      $.get('{% url 'line_chart_json' %}', function (data) {
+          var ctx = $("#myChart").get(0).getContext("2d");
+          new Chart(ctx, {
+              type: 'line',
+              data: data,
+              options: {
+                  responsive: false
+              }
+          });
+      });
+  </script>
+
+  <h2>HighCharts</h2>
+
+  <div id="myHighChart" style="height: 500px; width: 500px;"></div>
+
+  <script type="text/javascript" src="{% static 'js/highcharts/highcharts.js' %}"></script>
+  <script type="text/javascript">
+      $.get('{% url 'line_highchart_json' %}', function (data) {
+          data["chart"] = {type: "spline"};
+          $("#myHighChart").highcharts(data);
+      });
+  </script>
+</body>
 </html>
