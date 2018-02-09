@@ -32,7 +32,7 @@ setup(
     keywords='class-based view, generic view, download',
     author=u'Rémy HUBSCHER',
     author_email='remy.hubscher@novapost.fr',
-    url='https://github.com/novagile/django-chartjs',
+    url='https://github.com/peopledoc/django-chartjs',
     license='BSD',
     packages=PACKAGES,
     include_package_data=True,
