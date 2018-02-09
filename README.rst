@@ -4,8 +4,8 @@ Django Chartjs
 
 Django Chartjs lets you manage charts in your Django application.
 
-.. image:: https://travis-ci.org/novafloss/django-chartjs.svg?branch=master
-   :target: https://travis-ci.org/novafloss/django-chartjs
+.. image:: https://travis-ci.org/peopledoc/django-chartjs.svg?branch=master
+   :target: https://travis-ci.org/peopledoc/django-chartjs
 .. image:: https://coveralls.io/repos/novapost/django-chartjs/badge.png?branch=master&style=flat
    :target: https://coveralls.io/r/novapost/django-chartjs?branch=master
 .. image:: https://img.shields.io/pypi/v/django-chartjs.svg
@@ -18,10 +18,10 @@ Using a set of predefined Class Based Views you are able to get
 started after writing just your SQL query.
 
 * Authors: Rémy Hubscher and `contributors
-  <https://github.com/novagile/django-chartjs/graphs/contributors>`_
+  <https://github.com/peopledoc/django-chartjs/graphs/contributors>`_
 * Licence: BSD
 * Compatibility: Django 1.5+, python2.7 up to python3.3
-* Project URL: https://github.com/novagile/django-chartjs
+* Project URL: https://github.com/peopledoc/django-chartjs
 
 
 Getting Started
@@ -111,7 +111,7 @@ A simple Line Chart example.
 3. Get a Chart.js Line Chart
 ++++++++++++++++++++++++++++
 
-.. image:: https://raw.github.com/novagile/django-chartjs/master/docs/_static/django-chartjs.png
+.. image:: https://raw.github.com/peopledoc/django-chartjs/master/docs/_static/django-chartjs.png
 
 
 It is that simple!
