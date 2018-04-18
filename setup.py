@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+import codecs
 from os.path import abspath, dirname, join
 from setuptools import find_packages, setup
+
+here = abspath(dirname(__file__))
 
 
 def read_relative_file(filename):
     """Returns contents of the given file, whose path is supposed relative
     to this module."""
-    with open(join(dirname(abspath(__file__)), filename)) as f:
-        return f.read()
+    with codecs.open(join(here, filename), encoding='utf-8') as f:
+        content = f.read()
+    return content
 
 
 if __name__ == '__main__':  # ``import setup`` doesn't trigger setup().
