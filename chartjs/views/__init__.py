@@ -18,13 +18,15 @@ class HighChartsView(JSONView):
     def get_plot_options(self):
         return {}
 
-    def get_context_data(self):
-        data = {}
-        data['title'] = {'text': text_type(self.title)}
-        data['plotOptions'] = self.get_plot_options()
-        data['legend'] = self.get_legend()
-        data['credits'] = self.credits
-        return data
+    def get_context_data(self, **kwargs):
+        context = super(HighChartsView, self).get_context_data(**kwargs)
+        context.update({
+            'title': {'text': text_type(self.title)},
+            'plotOptions': self.get_plot_options(),
+            'legend': self.get_legend(),
+            'credits': self.credits,
+            })
+        return context
 
     def get_data(self):
         raise NotImplementedError(  # pragma: no cover
