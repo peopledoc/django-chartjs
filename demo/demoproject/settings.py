@@ -89,7 +89,12 @@ MIDDLEWARE_CLASSES = (
 )
 
 LANGUAGE_CODE = 'fr'
-ugettext = lambda s: s
+
+
+def ugettext(string):
+    return string
+
+
 LANGUAGES = (
     ('fr', ugettext('French')),
     ('en', ugettext('English')),

@@ -1,13 +1,13 @@
 from pkg_resources import parse_version
 import django
 from django.conf.urls import url
-django_version = parse_version(django.get_version())
-if django_version <= parse_version('1.9'):
-    from django.conf.urls import patterns
-
 from django.views.generic import TemplateView
 
 from . import views
+
+django_version = parse_version(django.get_version())
+if django_version <= parse_version('1.9'):
+    from django.conf.urls import patterns
 
 home = TemplateView.as_view(template_name='home.html')
 
