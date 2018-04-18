@@ -1,4 +1,4 @@
 recursive-include chartjs *
 global-exclude *.pyc
 include *.txt
-include VERSION README.rst CHANGELOG LICENSE INSTALL AUTHORS
+include VERSION README.rst CHANGELOG.rst LICENSE AUTHORS

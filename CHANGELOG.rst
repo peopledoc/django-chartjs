@@ -4,7 +4,7 @@ Changelog
 1.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Allow Chart Classes inheritance. (#37)
 
 
 1.2 (2017-05-24)
