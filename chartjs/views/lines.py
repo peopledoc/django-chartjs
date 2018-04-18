@@ -57,10 +57,12 @@ class HighchartPlotLineChartView(HighChartsView):
 
     def get_context_data(self, **kwargs):
         data = super(HighchartPlotLineChartView, self).get_context_data(**kwargs)
-        data['labels'] = self.get_labels()
-        data['xAxis'] = {"categories": self.get_labels()}
-        data['series'] = self.get_series()
-        data['yAxis'] = self.get_y_axis_options()
+        data.update({
+            'labels': self.get_labels(),
+            'xAxis': {"categories": self.get_labels()},
+            'series': self.get_series(),
+            'yAxis': self.get_y_axis_options()
+        })
         return data
 
     def get_providers(self):
