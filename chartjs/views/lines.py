@@ -10,7 +10,7 @@ class BaseLineChartView(JSONView):
 
     def get_context_data(self, **kwargs):
         context = super(BaseLineChartView, self).get_context_data(**kwargs)
-        context.update({ 'labels' : self.get_labels(), 'datasets' : self.get_datasets() })
+        context.update({'labels': self.get_labels(), 'datasets': self.get_datasets()})
         return context
 
     def get_colors(self):
