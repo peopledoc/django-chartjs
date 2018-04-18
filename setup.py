@@ -20,11 +20,16 @@ if __name__ == '__main__':  # ``import setup`` doesn't trigger setup().
         classifiers=['Development Status :: 4 - Beta',
                      'Environment :: Web Environment',
                      'Framework :: Django',
+                     'Framework :: Django :: 1.10',
+                     'Framework :: Django :: 1.8',
+                     'Framework :: Django :: 1.9',
                      'Intended Audience :: Developers',
                      'License :: OSI Approved :: BSD License',
                      'Programming Language :: Python',
                      'Programming Language :: Python :: 2.7',
-                     'Programming Language :: Python :: 3'],
+                     'Programming Language :: Python :: 3',
+                     'Programming Language :: Python :: 3.4',
+                     'Programming Language :: Python :: 3.5'],
         keywords='django chart chartjs highchart ajax class based views',
         author='Rémy Hubscher',
         author_email='hubscher.remy@gmail.com',
@@ -33,5 +38,5 @@ if __name__ == '__main__':  # ``import setup`` doesn't trigger setup().
         packages=find_packages(),
         include_package_data=True,
         zip_safe=False,
-        install_requires=['six']  # depends on Django
+        install_requires=['six']
     )

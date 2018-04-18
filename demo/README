@@ -32,7 +32,7 @@ Execute:
 
 .. code-block:: sh
 
-   git clone git@github.com:novagile/django-chartjs.git
+   git clone git@github.com:peopledoc/django-chartjs.git
    cd django-chartjs/
    make demo
 
@@ -54,7 +54,7 @@ References
 .. target-notes::
 
 .. _`demo folder in project's repository`:
-   https://github.com/novagile/django-chartjs/tree/master/demo/demoproject/
+   https://github.com/peopledoc/django-chartjs/tree/master/demo/demoproject/
 
 .. _`Python`: http://python.org
 .. _`virtualenv`: http://virtualenv.org

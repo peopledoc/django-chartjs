@@ -2,29 +2,26 @@
 Django Chartjs
 ##############
 
-Django Chartjs lets you manage charts in you Django application.
+Django Chartjs lets you manage charts in your Django application.
 
-.. image:: https://secure.travis-ci.org/novapost/django-chartjs.png?branch=master
-   :alt: Build Status
-   :target: https://secure.travis-ci.org/novapost/django-chartjs
-.. image:: https://coveralls.io/repos/novapost/django-chartjs/badge.png?branch=master
-   :alt: Coverage Status on master
+.. image:: https://travis-ci.org/peopledoc/django-chartjs.svg?branch=master
+   :target: https://travis-ci.org/peopledoc/django-chartjs
+.. image:: https://coveralls.io/repos/novapost/django-chartjs/badge.png?branch=master&style=flat
    :target: https://coveralls.io/r/novapost/django-chartjs?branch=master
-.. image:: https://pypip.in/v/django-chartjs/badge.png
-   :target: https://crate.io/packages/django-chartjs/
-.. image:: https://pypip.in/d/django-chartjs/badge.png
-   :target: https://crate.io/packages/django-chartjs/
+.. image:: https://img.shields.io/pypi/v/django-chartjs.svg
+   :target: https://pypi.python.org/pypi/django-chartjs/1.1
 
-This is compatible with Chart.js and Highcharts JS librairies.
 
-Using a set of predefined Class Based Views your are able to get
-started after writting just your SQL query.
+This is compatible with Chart.js and Highcharts JS libraries.
+
+Using a set of predefined Class Based Views you are able to get
+started after writing just your SQL query.
 
 * Authors: Rémy Hubscher and `contributors
-  <https://github.com/novagile/django-chartjs/graphs/contributors>`_
+  <https://github.com/peopledoc/django-chartjs/graphs/contributors>`_
 * Licence: BSD
 * Compatibility: Django 1.5+, python2.7 up to python3.3
-* Project URL: https://github.com/novagile/django-chartjs
+* Project URL: https://github.com/peopledoc/django-chartjs
 
 
 Getting Started
@@ -71,7 +68,9 @@ A simple Line Chart example.
             <script type="text/javascript">
                 $.get('{% url "line_chart_json" %}', function(data) {
                     var ctx = $("#myChart").get(0).getContext("2d");
-                    new Chart(ctx).Line(data);
+                    new Chart(ctx, {
+                        type: 'line', data: data
+                    });
                 });
             </script>
         </body>
@@ -90,11 +89,15 @@ A simple Line Chart example.
     
     class LineChartJSONView(BaseLineChartView):
         def get_labels(self):
-            """Return 7 labels."""
+            """Return 7 labels for the x-axis."""
             return ["January", "February", "March", "April", "May", "June", "July"]
-    
+
+        def get_providers(self):
+            """Return names of datasets."""
+            return ["Central", "Eastside", "Westside"]
+
         def get_data(self):
-            """Return 3 dataset to plot."""
+            """Return 3 datasets to plot."""
     
             return [[75, 44, 92, 11, 44, 95, 35],
                     [41, 92, 18, 3, 73, 87, 92],
@@ -108,11 +111,11 @@ A simple Line Chart example.
 3. Get a Chart.js Line Chart
 ++++++++++++++++++++++++++++
 
-.. image:: https://raw.github.com/novagile/django-chartjs/master/docs/_static/django-chartjs.png
+.. image:: https://raw.github.com/peopledoc/django-chartjs/master/docs/_static/django-chartjs.png
 
 
 It is that simple!
 
-For other example, don't hesitate to look at the demo project.
+For other examples including a HighCharts line chart, don't hesitate to look at the demo project.
 
-Also contribute your demo!
+Also, feel free to contribute your demo!

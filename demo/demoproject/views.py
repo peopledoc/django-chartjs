@@ -20,6 +20,10 @@ class ColorsView(TemplateView):
 
 
 class ChartMixin(object):
+    def get_providers(self):
+        """Return names of datasets."""
+        return ["Central", "Eastside", "Westside"]
+
     def get_labels(self):
         """Return 7 labels."""
         return ["January", "February", "March", "April", "May", "June", "July"]
@@ -55,6 +59,9 @@ class LineChartJSONView(ChartMixin, BaseLineChartView):
 
 
 class LineHighChartJSONView(ChartMixin, HighchartPlotLineChartView):
+    title = _('Line HighChart Test')
+    y_axis_title = _('Kangaroos')
+
     # special - line charts credits are personalized
     credits = {
         'enabled': True,
