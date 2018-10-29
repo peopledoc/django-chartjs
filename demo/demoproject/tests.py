@@ -2,7 +2,11 @@
 import json
 
 from django.test import TestCase
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse
+except ImportError:
+    # remove import shim when support for django 1.9 is dropped
+    from django.core.urlresolvers import reverse
 
 from demoproject._compat import decode
 
