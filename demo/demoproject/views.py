@@ -107,6 +107,28 @@ class DiscontinuousDatesChartJSONView(ChartMixin, BaseLineChartView):
         result.append(data)
         return result
 
+class DiscontinuousDatesHighChartJSONView(ChartMixin, HighchartPlotLineChartView):
+    title = _('Discontinuous Line HighChart Test')
+    y_axis_title = _('Volume')
+    start_date = "2019-05-26"
+    end_date = "2019-06-04"
+
+    def get_providers(self):
+        return ["Water", "Gas"]
+
+    def get_labels(self):
+        return [dt for dt in util.date_range(self.start_date, self.end_date)]
+
+    def get_data(self):
+        result = []
+        water = Meter.objects.filter(name="water")
+        data = [item for item in util.value_or_null(self.start_date, self.end_date, water, "date", "reading")]
+        result.append(data)
+        gas = Meter.objects.filter(name="gas")
+        data = [item for item in util.value_or_null(self.start_date, self.end_date, gas, "date", "reading")]
+        result.append(data)
+        return result
+
 
 # Pre-configured views.
 colors = ColorsView.as_view()
@@ -118,3 +140,4 @@ line_highchart_json = LineHighChartJSONView.as_view()
 pie_highchart_json = PieHighChartJSONView.as_view()
 donut_highchart_json = DonutHighChartJSONView.as_view()
 discontinuous_dates_chart_json = DiscontinuousDatesChartJSONView.as_view()
+discontinuous_dates_highchart_json = DiscontinuousDatesHighChartJSONView.as_view()
