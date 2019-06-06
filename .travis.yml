@@ -11,7 +11,7 @@ before_install:
 install:
     - pip install -r test-requirements.pip
 script:
-    - tox -e $(echo py$TRAVIS_PYTHON_VERSION | tr -d .)
+    - tox -e $(tox -l | grep py$TRAVIS_PYTHON_VERSION | tr -d . | tr \\n ,)
 after_success:
   # Report coverage results to coveralls.io
   - pip install coveralls
