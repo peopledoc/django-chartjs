@@ -34,8 +34,8 @@ def next_color(color_list=COLORS):
     >>> next(g)
     [84, 83, 79]
     """
-    step = 1
+    step = 0
     while True:
         for color in color_list:
-            yield map(lambda base: (base + step) % 256, color)
+            yield list(map(lambda base: (base + step) % 256, color))
         step += 197
