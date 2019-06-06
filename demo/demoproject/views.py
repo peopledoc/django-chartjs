@@ -9,6 +9,15 @@ from chartjs.views.columns import BaseColumnsHighChartsView
 from chartjs.views.lines import BaseLineChartView, HighchartPlotLineChartView
 from chartjs.views.pie import HighChartPieView, HighChartDonutView
 
+import os
+import sys
+import importlib
+_parent = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+sys.path.append(os.path.join(_parent, 'chartjs'))
+util = importlib.import_module('util')
+
+from demoproject.models import Meter
+
 
 class ColorsView(TemplateView):
     template_name = 'colors.html'
@@ -78,6 +87,27 @@ class DonutHighChartJSONView(ChartMixin, HighChartDonutView):
     pass
 
 
+class DiscontinuousDatesChartJSONView(ChartMixin, BaseLineChartView):
+    start_date = "2019-05-26"
+    end_date = "2019-06-04"
+
+    def get_providers(self):
+        return ["Water", "Gas"]
+
+    def get_labels(self):
+        return [dt for dt in util.date_range(self.start_date, self.end_date)]
+
+    def get_data(self):
+        result = []
+        water = Meter.objects.filter(name="water")
+        data = [item for item in util.value_or_null(self.start_date, self.end_date, water, "date", "reading")]
+        result.append(data)
+        gas = Meter.objects.filter(name="gas")
+        data = [item for item in util.value_or_null(self.start_date, self.end_date, gas, "date", "reading")]
+        result.append(data)
+        return result
+
+
 # Pre-configured views.
 colors = ColorsView.as_view()
 
@@ -87,3 +117,4 @@ line_chart_json = LineChartJSONView.as_view()
 line_highchart_json = LineHighChartJSONView.as_view()
 pie_highchart_json = PieHighChartJSONView.as_view()
 donut_highchart_json = DonutHighChartJSONView.as_view()
+discontinuous_dates_chart_json = DiscontinuousDatesChartJSONView.as_view()

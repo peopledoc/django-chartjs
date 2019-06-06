@@ -31,6 +31,25 @@
       });
   </script>
 
+  <h2>Chart.js with Discontinuous Data</h2>
+
+  <canvas id="myDiscontinuousChart" width="500" height="500"></canvas>
+
+  <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+  <script type="text/javascript">
+      $.get('{% url 'discontinuous_line_chart_json' %}', function (data) {
+          var ctx = $("#myDiscontinuousChart").get(0).getContext("2d");
+          new Chart(ctx, {
+              type: 'line',
+              data: data,
+              options: {
+                  responsive: false,
+                  spanGaps: false,
+              }
+          });
+      });
+  </script>
+
   <h2>HighCharts</h2>
 
   <div id="myHighChart" style="height: 500px; width: 500px;"></div>

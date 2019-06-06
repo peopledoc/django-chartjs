@@ -37,18 +37,6 @@ def value_or_null(start_date, end_date, queryset, date_attr, value_attr):
     weekends, and you want to express that those data points are missing. If a queryset
     doesn't have a value for a particular date, then this generator yields a 'null'.
 
-    Example:
-        Suppose we have a model of automobiles and we're interested in plotting the
-        number of trips to 7-11. (We're trying to estimate out Cheetos consumprion.)
-        We can filter our automobiles model by make and model if we like, or not, and
-        then dump that QuerySet into the `value_or_null` generator in order to produce
-        either the number of trips to 7-11 that day, or a 'null' string, if no data is
-        available for that date.
-
-        >>> queryset = Automobiles.objects.filter(make="Subaru", model="Outback")
-        >>> for value in util.value_or_null('2019-05-01', '2019-06-01', queryset, 'date', 'trips_to_711')
-        [0, 1, 1, 'null', 3, 5, 8, 'null', ...]
-
     Arguments:
         start_date (datetime.date object or 'yyyy-mm-dd'): Start date.
         end_date: (datetime.date object or 'yyyy-mm-dd'): End date.
