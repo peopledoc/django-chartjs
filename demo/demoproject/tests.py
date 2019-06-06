@@ -1,5 +1,4 @@
 """Unit tests for chartjs api."""
-from __future__ import absolute_import
 import json
 
 from django.test import TestCase
@@ -15,11 +14,9 @@ from demoproject.models import Meter
 import os
 import sys
 
-# breakpoint()
 _parent = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 sys.path.append(os.path.join(_parent, 'chartjs'))
 import util
-import subprocess
 
 
 class LineChartJSTestCase(TestCase):
