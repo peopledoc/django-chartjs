@@ -9,14 +9,8 @@ except ImportError:
     from django.core.urlresolvers import reverse
 
 from demoproject._compat import decode
-
 from demoproject.models import Meter
-import os
-import sys
-
-_parent = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-sys.path.append(os.path.join(_parent, 'chartjs'))
-import util
+from chartjs.util import value_or_null
 
 
 class LineChartJSTestCase(TestCase):
@@ -112,7 +106,7 @@ class DiscontinuousDataTestCase(TestCase):
         NULL = "null"
         queryset = Meter.objects.filter(name="gas")
         actual_data = []
-        for item in util.value_or_null(self.start_date, self.end_date, queryset, "date", "reading"):
+        for item in value_or_null(self.start_date, self.end_date, queryset, "date", "reading"):
             actual_data.append(item)
         expected_data = [NULL, NULL, 15, 13, 12, 14, 16, 17, NULL, NULL]
         self.assertEqual(actual_data, expected_data)
@@ -121,7 +115,7 @@ class DiscontinuousDataTestCase(TestCase):
         NULL = "null"
         queryset = Meter.objects.filter(name="water")
         actual_data = []
-        for item in util.value_or_null(self.start_date, self.end_date, queryset, "date", "reading"):
+        for item in value_or_null(self.start_date, self.end_date, queryset, "date", "reading"):
             actual_data.append(item)
         expected_data = [10, 12, 13, 15, NULL, NULL, 16, 18, 20, 21]
         self.assertEqual(actual_data, expected_data)
