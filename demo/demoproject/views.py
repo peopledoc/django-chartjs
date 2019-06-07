@@ -8,13 +8,7 @@ from chartjs.colors import next_color, COLORS
 from chartjs.views.columns import BaseColumnsHighChartsView
 from chartjs.views.lines import BaseLineChartView, HighchartPlotLineChartView
 from chartjs.views.pie import HighChartPieView, HighChartDonutView
-
-import os
-import sys
-import importlib
-_parent = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-sys.path.append(os.path.join(_parent, 'chartjs'))
-util = importlib.import_module('util')
+from chartjs.util import date_range, value_or_null
 
 from demoproject.models import Meter
 
@@ -95,15 +89,15 @@ class DiscontinuousDatesChartJSONView(ChartMixin, BaseLineChartView):
         return ["Water", "Gas"]
 
     def get_labels(self):
-        return [dt for dt in util.date_range(self.start_date, self.end_date)]
+        return [dt for dt in date_range(self.start_date, self.end_date)]
 
     def get_data(self):
         result = []
         water = Meter.objects.filter(name="water")
-        data = [item for item in util.value_or_null(self.start_date, self.end_date, water, "date", "reading")]
+        data = [item for item in value_or_null(self.start_date, self.end_date, water, "date", "reading")]
         result.append(data)
         gas = Meter.objects.filter(name="gas")
-        data = [item for item in util.value_or_null(self.start_date, self.end_date, gas, "date", "reading")]
+        data = [item for item in value_or_null(self.start_date, self.end_date, gas, "date", "reading")]
         result.append(data)
         return result
 
@@ -117,15 +111,15 @@ class DiscontinuousDatesHighChartJSONView(ChartMixin, HighchartPlotLineChartView
         return ["Water", "Gas"]
 
     def get_labels(self):
-        return [dt for dt in util.date_range(self.start_date, self.end_date)]
+        return [dt for dt in date_range(self.start_date, self.end_date)]
 
     def get_data(self):
         result = []
         water = Meter.objects.filter(name="water")
-        data = [item for item in util.value_or_null(self.start_date, self.end_date, water, "date", "reading")]
+        data = [item for item in value_or_null(self.start_date, self.end_date, water, "date", "reading")]
         result.append(data)
         gas = Meter.objects.filter(name="gas")
-        data = [item for item in util.value_or_null(self.start_date, self.end_date, gas, "date", "reading")]
+        data = [item for item in value_or_null(self.start_date, self.end_date, gas, "date", "reading")]
         result.append(data)
         return result
 
