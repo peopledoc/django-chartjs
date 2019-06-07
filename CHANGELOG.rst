@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.4 (unreleased)
-----------------
+1.4.0 (2019-06-07)
+------------------
 
 - Add utilities to generate and graph discontinuous datestamped data. (#43)
 
