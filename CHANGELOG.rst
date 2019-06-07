@@ -4,7 +4,7 @@ Changelog
 1.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add utilities to generate and graph discontinuous datestamped data. (#43)
 
 
 1.3 (unreleased)

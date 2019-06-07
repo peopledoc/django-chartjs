@@ -1,16 +1,18 @@
 language: python
+dist: xenial
 python:
     - "2.7"
     - "3.4"
     - "3.5"
     - "3.6"
+    - "3.7"
 before_install:
     - pip install -U pip setuptools
     - pip install -U tox
 install:
     - pip install -r test-requirements.pip
 script:
-    - tox -e $(echo py$TRAVIS_PYTHON_VERSION | tr -d .)
+    - tox -e $(tox -l | grep $(echo py$TRAVIS_PYTHON_VERSION| tr -d .) | tr \\n ,)
 after_success:
   # Report coverage results to coveralls.io
   - pip install coveralls

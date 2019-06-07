@@ -24,8 +24,12 @@ patterns_list = [
         name='line_chart'),
     url(r'^line_chart/json/$', views.line_chart_json,
         name='line_chart_json'),
+    url(r'^line_chart/discontinuous/json/$', views.discontinuous_dates_chart_json,
+        name='discontinuous_line_chart_json'),
     url(r'^line_highchart/json/$', views.line_highchart_json,
         name='line_highchart_json'),
+    url(r'^line_highchart/discontinuous/json/$', views.discontinuous_dates_highchart_json,
+        name='discontinuous_line_highchart_json'),
 
     # Pie
     url(r'^pie_highchart/json/$', views.pie_highchart_json,
