@@ -9,7 +9,7 @@ Django Chartjs lets you manage charts in your Django application.
 .. image:: https://coveralls.io/repos/novapost/django-chartjs/badge.png?branch=master&style=flat
    :target: https://coveralls.io/r/novapost/django-chartjs?branch=master
 .. image:: https://img.shields.io/pypi/v/django-chartjs.svg
-   :target: https://pypi.python.org/pypi/django-chartjs/1.1
+   :target: https://pypi.python.org/pypi/django-chartjs/
 
 
 This is compatible with Chart.js and Highcharts JS libraries.
