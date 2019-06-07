@@ -1,5 +1,7 @@
 import datetime
 
+NULL = "null"
+
 
 def str_to_datetime_date(datestr):
     """Convert a 'yyyy-mm-dd' string to a datetime.date object.
@@ -47,7 +49,6 @@ def value_or_null(start_date, end_date, queryset, date_attr, value_attr):
     Yields:
         numeric value or 'null' string
     """
-    NULL = "null"
     if type(start_date) == str:
         start_date = str_to_datetime_date(start_date)
     if type(end_date) == str:

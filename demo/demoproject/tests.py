@@ -10,7 +10,7 @@ except ImportError:
 
 from demoproject._compat import decode
 from demoproject.models import Meter
-from chartjs.util import value_or_null
+from chartjs.util import value_or_null, NULL
 
 
 class LineChartJSTestCase(TestCase):
@@ -103,7 +103,6 @@ class DiscontinuousDataTestCase(TestCase):
         Meter.objects.create(date="2019-06-02", name="gas", reading=17)
 
     def test_generator_fills_end_values_with_null(self):
-        NULL = "null"
         queryset = Meter.objects.filter(name="gas")
         actual_data = []
         for item in value_or_null(self.start_date, self.end_date, queryset, "date", "reading"):
@@ -112,7 +111,6 @@ class DiscontinuousDataTestCase(TestCase):
         self.assertEqual(actual_data, expected_data)
 
     def test_generator_fills_middle_values_with_null(self):
-        NULL = "null"
         queryset = Meter.objects.filter(name="water")
         actual_data = []
         for item in value_or_null(self.start_date, self.end_date, queryset, "date", "reading"):
