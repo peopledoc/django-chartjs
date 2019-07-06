@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from chartjs.colors import next_color, COLORS
 from chartjs.views.columns import BaseColumnsHighChartsView
-from chartjs.views.lines import BaseLineChartView, HighchartPlotLineChartView
+from chartjs.views.lines import BaseLineChartView, BaseLineOptionsChartView, HighchartPlotLineChartView
 from chartjs.views.pie import HighChartPieView, HighChartDonutView
 from chartjs.util import date_range, value_or_null
 
@@ -123,6 +123,23 @@ class DiscontinuousDatesHighChartJSONView(ChartMixin, HighchartPlotLineChartView
         result.append(data)
         return result
 
+class LineChartWithOptionsJSONView(ChartMixin, BaseLineOptionsChartView):
+    def get_options(self):
+        options = {
+            "title": {
+                "display": True,
+                "text": 'Custom Chart Title',
+            },
+            "elements": {
+                "point": {
+                    "pointStyle": "rectRounded",
+                    "radius": 10,
+                },
+            },
+            "responsive": False,
+        }
+        return options
+
 
 # Pre-configured views.
 colors = ColorsView.as_view()
@@ -135,3 +152,4 @@ pie_highchart_json = PieHighChartJSONView.as_view()
 donut_highchart_json = DonutHighChartJSONView.as_view()
 discontinuous_dates_chart_json = DiscontinuousDatesChartJSONView.as_view()
 discontinuous_dates_highchart_json = DiscontinuousDatesHighChartJSONView.as_view()
+line_chart_with_options = LineChartWithOptionsJSONView.as_view()

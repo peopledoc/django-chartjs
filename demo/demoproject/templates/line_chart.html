@@ -48,6 +48,21 @@
       });
   </script>
 
+  <h2>Chart.js Line Chart with options specified in view</h2>
+
+  <canvas id="lineChartWithOptions" width="500" height="500"></canvas>
+
+  <script type="text/javascript">
+    $.get('{% url 'line_chart_with_options' %}', function (data) {
+        var ctx = $("#lineChartWithOptions").get(0).getContext("2d");
+        new Chart(ctx, {
+            type: 'line',
+            data: data.data,
+            options: data.options,
+        });
+    });
+</script>
+
   <h2>HighCharts</h2>
 
   <div id="myHighChart" style="height: 500px; width: 500px;"></div>

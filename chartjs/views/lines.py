@@ -49,6 +49,23 @@ class BaseLineChartView(JSONView):
         return []
 
 
+class BaseLineOptionsChartView(BaseLineChartView):
+    def get_context_data(self, **kwargs):
+        context = super(BaseLineChartView, self).get_context_data(**kwargs)
+        context.update({
+            'data': {
+                'labels': self.get_labels(),
+                'datasets': self.get_datasets(),
+            },
+            'options': self.get_options(),
+        })
+        return context
+
+    def get_options(self):
+        raise NotImplementedError(  # pragma: no cover
+            'You should return a dict. '
+            '(i.e.: {"responsive": false})')
+
 class HighchartPlotLineChartView(HighChartsView):
     y_axis_title = None
 
