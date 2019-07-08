@@ -1,10 +1,10 @@
 Changelog
 =========
 
-1.5.0 (unreleased)
+1.5.0 (2019-07-08)
 ------------------
 
-- Nothing changed yet.
+- Handle a new ClassBased view with LineChartJS options. (#45)
 
 
 1.4.0 (2019-06-07)
