@@ -118,3 +118,16 @@ class DiscontinuousDataTestCase(TestCase):
         expected_data = [10, 12, 13, 15, NULL, NULL, 16, 18, 20, 21]
         self.assertEqual(actual_data, expected_data)
 
+
+class ChartOptionsTestCase(TestCase):
+    def test_line_chart_with_options_json(self):
+        resp = self.client.get(reverse('line_chart_with_options'))
+        try:
+            data = json.loads(decode(resp.content))
+        except ValueError:
+            self.fail("%r is not valid json" % self.resp.content)
+        self.assertIn('data', data)
+        self.assertIn('datasets', data['data'])
+        self.assertIn('labels', data['data'])
+        self.assertIn('options', data)
+        self.assertIn('title', data['options'])
