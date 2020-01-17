@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Tools to build Line charts parameters."""
 from . import HighChartsView
 from ..colors import next_color

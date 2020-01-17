@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Tools to build Columns HighCharts parameters."""
 from .base import JSONView
 

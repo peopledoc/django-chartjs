@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 COLORS = [
     (202, 201, 197),  # Light gray
     (171, 9, 0),  # Red

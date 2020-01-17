@@ -2,17 +2,11 @@
 import json
 
 from django.test import TestCase
+from django.urls import reverse
 
 from chartjs.util import NULL, value_or_null
 
-from demoproject._compat import decode
 from demoproject.models import Meter
-
-try:
-    from django.urls import reverse
-except ImportError:
-    # remove import shim when support for django 1.9 is dropped
-    from django.core.urlresolvers import reverse
 
 
 class LineChartJSTestCase(TestCase):
@@ -23,7 +17,7 @@ class LineChartJSTestCase(TestCase):
     def test_list_chartjs_json(self):
         resp = self.client.get(reverse("line_chart_json"))
         try:
-            data = json.loads(decode(resp.content))
+            data = json.loads(resp.content.decode("utf-8"))
         except ValueError:
             self.fail("%r is not valid json" % self.resp.content)
 
@@ -41,7 +35,7 @@ class HighChartJSTestCase(TestCase):
     def test_column_chartjs_json(self):
         resp = self.client.get(reverse("column_highchart_json"))
         try:
-            data = json.loads(decode(resp.content))
+            data = json.loads(resp.content.decode("utf-8"))
         except ValueError:
             self.fail("%r is not valid json" % self.resp.content)
         self.assertIn("title", data)
@@ -54,7 +48,7 @@ class HighChartJSTestCase(TestCase):
     def test_list_chartjs_json(self):
         resp = self.client.get(reverse("line_highchart_json"))
         try:
-            data = json.loads(decode(resp.content))
+            data = json.loads(resp.content.decode("utf-8"))
         except ValueError:
             self.fail("%r is not valid json" % self.resp.content)
 
@@ -69,14 +63,14 @@ class HighChartJSTestCase(TestCase):
     def test_pie_chartjs_json(self):
         resp = self.client.get(reverse("pie_highchart_json"))
         try:
-            json.loads(decode(resp.content))
+            json.loads(resp.content.decode("utf-8"))
         except ValueError:
             self.fail("%r is not valid json" % self.resp.content)
 
     def test_donut_chartjs_json(self):
         resp = self.client.get(reverse("donut_highchart_json"))
         try:
-            json.loads(decode(resp.content))
+            json.loads(resp.content.decode("utf-8"))
         except ValueError:
             self.fail("%r is not valid json" % self.resp.content)
 
@@ -127,7 +121,7 @@ class ChartOptionsTestCase(TestCase):
     def test_line_chart_with_options_json(self):
         resp = self.client.get(reverse("line_chart_with_options"))
         try:
-            data = json.loads(decode(resp.content))
+            data = json.loads(resp.content.decode("utf-8"))
         except ValueError:
             self.fail("%r is not valid json" % self.resp.content)
         self.assertIn("data", data)
