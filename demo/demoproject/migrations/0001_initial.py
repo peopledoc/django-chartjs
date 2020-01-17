@@ -7,20 +7,25 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Meter',
+            name="Meter",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateField()),
-                ('name', models.CharField(max_length=255)),
-                ('reading', models.IntegerField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date", models.DateField()),
+                ("name", models.CharField(max_length=255)),
+                ("reading", models.IntegerField()),
             ],
-            options={
-                'ordering': ('-date', 'name'),
-            },
+            options={"ordering": ("-date", "name"),},
         ),
     ]

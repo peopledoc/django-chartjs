@@ -6,11 +6,12 @@ from django.views.generic import TemplateView
 
 class ComplexEncoder(json.JSONEncoder):
     """Always return JSON primitive."""
+
     def default(self, obj):
         try:
             return super(ComplexEncoder, obj).default(obj)
         except TypeError:
-            if hasattr(obj, 'pk'):
+            if hasattr(obj, "pk"):
                 return obj.pk
             return str(obj)
 
@@ -22,9 +23,9 @@ class JSONResponseMixin(object):
 
     def get_json_response(self, content, **httpresponse_kwargs):
         "Construct an `HttpResponse` object."
-        return http.HttpResponse(content,
-                                 content_type='application/json',
-                                 **httpresponse_kwargs)
+        return http.HttpResponse(
+            content, content_type="application/json", **httpresponse_kwargs
+        )
 
     def convert_context_to_json(self, context):
         "Convert the context dictionary into a JSON object"
@@ -33,4 +34,5 @@ class JSONResponseMixin(object):
 
 class JSONView(JSONResponseMixin, TemplateView):
     """A Base JSON View using the Mixin."""
+
     pass
