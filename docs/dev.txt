@@ -57,7 +57,7 @@ Execute:
 
 .. code-block:: sh
 
-   git clone git@github.com:novapost/django-chartjs.git
+   git clone git@github.com:peopledoc/django-chartjs.git
    cd django-chartjs/
    make test
 
@@ -110,9 +110,9 @@ References
 .. target-notes::
 
 .. _`bugtracker`: 
-   https://github.com/novapost/django-chartjs/issues
+   https://github.com/peopledoc/django-chartjs/issues
 .. _`rebase`: http://git-scm.com/book/en/Git-Branching-Rebasing
-.. _`merge-based rebase`: http://tech.novapost.fr/psycho-rebasing-en.html
+.. _`merge-based rebase`: http://tech.peopledoc.fr/psycho-rebasing-en.html
 .. _`Python`: http://python.org
 .. _`Virtualenv`: http://virtualenv.org
 .. _`style guide for Sphinx-based documentations`:
