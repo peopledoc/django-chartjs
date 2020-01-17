@@ -1,7 +1,6 @@
 """Django settings for Django-DownloadView demo project."""
 from os.path import abspath, dirname, join
 
-
 # Configure some relative directories.
 demoproject_dir = dirname(abspath(__file__))
 BASE_DIR = demoproject_dir

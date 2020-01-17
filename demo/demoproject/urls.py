@@ -1,7 +1,8 @@
-from pkg_resources import parse_version
 import django
 from django.conf.urls import url
 from django.views.generic import TemplateView
+
+from pkg_resources import parse_version
 
 from . import views
 

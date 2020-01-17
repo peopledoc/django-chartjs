@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
-from random import shuffle, randint
 from itertools import islice
-from django.views.generic import TemplateView
-from django.utils.translation import ugettext_lazy as _
+from random import randint, shuffle
 
-from chartjs.colors import next_color, COLORS
+from django.utils.translation import ugettext_lazy as _
+from django.views.generic import TemplateView
+
+from chartjs.colors import COLORS, next_color
+from chartjs.util import date_range, value_or_null
 from chartjs.views.columns import BaseColumnsHighChartsView
 from chartjs.views.lines import (
     BaseLineChartView,
     BaseLineOptionsChartView,
     HighchartPlotLineChartView,
 )
-from chartjs.views.pie import HighChartPieView, HighChartDonutView
-from chartjs.util import date_range, value_or_null
+from chartjs.views.pie import HighChartDonutView, HighChartPieView
 
 from demoproject.models import Meter
 

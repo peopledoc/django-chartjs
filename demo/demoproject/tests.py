@@ -3,15 +3,16 @@ import json
 
 from django.test import TestCase
 
+from chartjs.util import NULL, value_or_null
+
+from demoproject._compat import decode
+from demoproject.models import Meter
+
 try:
     from django.urls import reverse
 except ImportError:
     # remove import shim when support for django 1.9 is dropped
     from django.core.urlresolvers import reverse
-
-from demoproject._compat import decode
-from demoproject.models import Meter
-from chartjs.util import value_or_null, NULL
 
 
 class LineChartJSTestCase(TestCase):

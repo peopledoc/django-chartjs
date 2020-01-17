@@ -1,6 +1,7 @@
 # coding=utf-8
 """Python packaging."""
 import os
+
 from setuptools import setup
 
 

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from six import text_type
+
 from ..colors import next_color
 from .base import JSONView
 
