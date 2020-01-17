@@ -154,8 +154,8 @@ class DiscontinuousDatesHighChartJSONView(ChartMixin, HighchartPlotLineChartView
 class LineChartWithOptionsJSONView(ChartMixin, BaseLineOptionsChartView):
     def get_options(self):
         options = {
-            "title": {"display": True, "text": "Custom Chart Title",},
-            "elements": {"point": {"pointStyle": "rectRounded", "radius": 10,},},
+            "title": {"display": True, "text": "Custom Chart Title"},
+            "elements": {"point": {"pointStyle": "rectRounded", "radius": 10}},
             "responsive": False,
         }
         return options

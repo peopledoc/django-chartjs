@@ -26,6 +26,6 @@ class Migration(migrations.Migration):
                 ("name", models.CharField(max_length=255)),
                 ("reading", models.IntegerField()),
             ],
-            options={"ordering": ("-date", "name"),},
+            options={"ordering": ("-date", "name")},
         ),
     ]

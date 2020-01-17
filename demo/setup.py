@@ -40,5 +40,5 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=REQUIRES,
-    entry_points={"console_scripts": ["demo = demoproject.manage:main",]},
+    entry_points={"console_scripts": ["demo = demoproject.manage:main"]},
 )

@@ -56,7 +56,7 @@ class BaseLineOptionsChartView(BaseLineChartView):
         context = super(BaseLineChartView, self).get_context_data(**kwargs)
         context.update(
             {
-                "data": {"labels": self.get_labels(), "datasets": self.get_datasets(),},
+                "data": {"labels": self.get_labels(), "datasets": self.get_datasets()},
                 "options": self.get_options(),
             }
         )
