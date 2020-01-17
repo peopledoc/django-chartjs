@@ -1,6 +1,8 @@
- Django
- flake8
- django-nose
- coverage
- nose
- rednose
+Django
+flake8
+django-nose
+coverage
+nose
+rednose
+black
+isort
