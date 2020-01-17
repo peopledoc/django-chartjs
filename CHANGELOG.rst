@@ -1,10 +1,12 @@
 Changelog
 =========
 
-1.6.0 (unreleased)
+2.0.0 (2020-01-17)
 ------------------
 
-- Nothing changed yet.
+- Drop support for Python 2.7
+- Add support for Django 1.10, 2.2 and 3.0 and remove older version support.
+- Add black and isort configs.
 
 
 1.5.0 (2019-07-08)
