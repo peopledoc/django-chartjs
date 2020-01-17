@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from random import shuffle, randint
 from itertools import islice
 from django.views.generic import TemplateView

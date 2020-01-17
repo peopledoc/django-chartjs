@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Tools to build Line charts parameters."""
 from .base import JSONView
 from ..colors import next_color

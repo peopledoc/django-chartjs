@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 from django import http
 from django.views.generic import TemplateView

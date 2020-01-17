@@ -1,4 +1,3 @@
-# coding=utf-8
 """Python packaging."""
 import os
 from setuptools import setup
@@ -25,13 +24,12 @@ setup(
     long_description=README,
     classifiers=['Development Status :: 1 - Planning',
                  'License :: OSI Approved :: BSD License',
-                 'Programming Language :: Python :: 2.7',
                  'Programming Language :: Python :: 3',
                  'Framework :: Django',
                  ],
     keywords='class-based view, generic view, download',
     author=u'Rémy HUBSCHER',
-    author_email='remy.hubscher@novapost.fr',
+    author_email='hubscher.remy@gmail.com',
     url='https://github.com/peopledoc/django-chartjs',
     license='BSD',
     packages=PACKAGES,
