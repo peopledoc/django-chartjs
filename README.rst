@@ -20,7 +20,7 @@ started after writing just your SQL query.
 * Authors: Rémy Hubscher and `contributors
   <https://github.com/peopledoc/django-chartjs/graphs/contributors>`_
 * Licence: BSD
-* Compatibility: Django 1.5+, python2.7 up to python3.7
+* Compatibility: Django 1.10, 2.2 and 3.0, python3.6 up to python3.8
 * Project URL: https://github.com/peopledoc/django-chartjs
 
 
