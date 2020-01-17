@@ -7,4 +7,4 @@ class Meter(models.Model):
     reading = models.IntegerField()
 
     class Meta:
-        ordering = ('-date', 'name')
+        ordering = ("-date", "name")
