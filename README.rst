@@ -82,8 +82,6 @@ A simple Line Chart example.
 
 .. code-block:: python
 
-    from random import randint
-    from django.views.generic import TemplateView
     from chartjs.views.lines import BaseLineChartView
     
     
@@ -104,11 +102,22 @@ A simple Line Chart example.
                     [87, 21, 94, 3, 90, 13, 65]]
     
     
-    line_chart = TemplateView.as_view(template_name='line_chart.html')
-    line_chart_json = LineChartJSONView.as_view()
+3. Update urls.py with the new urls for TemplateView and AJAX call 'line_chart_json' as in chart.html
+++++++++++++++++++++++++++++
+
+.. code-block:: python
+
+    from django.views.generic import TemplateView
+    from .views import LineChartJSONView
+    
+    urlpatterns = [
+      '...',
+      path('chart', TemplateView.as_view(template_name='chart.html'), name='line_chart'),
+      path('chartJSON', views.LineChartJSONView.as_view(), name='line_chart_json'),
+    ]
 
 
-3. Get a Chart.js Line Chart
+4. Get a Chart.js Line Chart
 ++++++++++++++++++++++++++++
 
 .. image:: https://raw.github.com/peopledoc/django-chartjs/master/docs/_static/django-chartjs.png
