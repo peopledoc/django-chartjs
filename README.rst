@@ -1,4 +1,3 @@
-##############
 Django Chartjs
 ##############
 
@@ -105,10 +104,10 @@ A simple Line Chart example.
     
     line_chart = TemplateView.as_view(template_name='line_chart.html')
     line_chart_json = LineChartJSONView.as_view()
-    
+
     
 3. Update urls.py with the new urls for TemplateView and AJAX call 'line_chart_json' as in chart.html
-++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. code-block:: python
 

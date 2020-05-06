@@ -1,10 +1,10 @@
 Changelog
 =========
 
-2.1.0 (unreleased)
+2.1.0 (2020-05-06)
 ------------------
 
-- Nothing changed yet.
+- Add get_dataset_options method.
 
 
 2.0.0 (2020-01-17)
