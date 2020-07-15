@@ -49,7 +49,7 @@ A simple Line Chart example.
 
 .. code-block:: html
 
-    {% load staticfiles %}
+    {% load static %}
     <html>
         <head>
             <title>django-chartjs line chart demo</title>
