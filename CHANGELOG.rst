@@ -1,10 +1,10 @@
 Changelog
 =========
 
-2.2.0 (unreleased)
+2.2.1 (2020-07-15)
 ------------------
 
-- Nothing changed yet.
+- Update to Chart.js 2.9.3
 
 
 2.1.0 (2020-05-06)
