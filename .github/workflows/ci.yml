@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron:  '0 6 1 * *' # Run on the first day of every month at 06:00 UTC
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - run: pip install tox tox-gh-actions
+    - run: pip install -r test-requirements.pip
+    - run: tox
