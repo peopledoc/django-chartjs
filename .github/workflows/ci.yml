@@ -55,10 +55,6 @@ jobs:
             python_version: "3.9"
             tox_env: py39-django40
 
-          - name: Python 3.10 / Django 4.0
-            python_version: "3.10"
-            tox_env: py310-django40
-
           - name: Flake8
             python_version: "3"
             tox_env: flake8
