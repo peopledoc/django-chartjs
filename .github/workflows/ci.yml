@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'master'
+    tags:
+      - '*'
+
+jobs:
+  build:
+
+    strategy:
+      matrix:
+        include:
+
+          - name: Python 3.7 / Django 1.10
+            python_version: "3.7"
+            tox_env: py37-django110
+
+          - name: Python 3.9 / Django 2.2
+            python_version: "3.9"
+            tox_env: py39-django22
+
+          - name: Python 3.9 / Django 3.0
+            python_version: "3.9"
+            tox_env: py39-django30
+
+          - name: Python 3.9 / Django 3.1
+            python_version: "3.9"
+            tox_env: py39-django31
+
+          - name: Python 3.7 / Django 3.2
+            python_version: "3.7"
+            tox_env: py37-django32
+
+          - name: Python 3.8 / Django 3.2
+            python_version: "3.8"
+            tox_env: py38-django32
+
+          - name: Python 3.9 / Django 3.2
+            python_version: "3.9"
+            tox_env: py39-django32
+
+          - name: Python 3.10 / Django 3.2
+            python_version: "3.10"
+            tox_env: py310-django32
+
+          - name: Python 3.9 / Django 4.0
+            python_version: "3.9"
+            tox_env: py39-django40
+
+          - name: Flake8
+            python_version: "3"
+            tox_env: flake8
+
+    name: "${{ matrix.name }}"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        id: setup-python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python_version }}
+
+      - name: Pip cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/
+          key: ${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('setup.cfg') }}
+
+      - name: Install Tox
+        run: pip install tox
+
+      - name: Run ${{ matrix.name }}
+        run: tox
+        env:
+          TOXENV: "${{ matrix.tox_env }}"
+
+  report-status:
+    name: success
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+
+      - name: Report success
+        run: echo 'Success !'
