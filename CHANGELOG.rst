@@ -1,7 +1,12 @@
 Changelog
 =========
 
-2.3.0 (unreleased)
+2.4.0 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+2.3.0 (2022-02-07)
 ------------------
 
 - Remove CI test because Nose is unmaintained and no longer works with Python 3.10.
