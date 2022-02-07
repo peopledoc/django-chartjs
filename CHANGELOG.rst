@@ -4,8 +4,13 @@ Changelog
 2.3.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Remove CI test because Nose is unmaintained and no longer works with Python 3.10.
+- Update CI tox envs
+- Add github actions
+- Rename tox.ini envs
+- Django 3 compatibility
+- Update tox.ini
+- Fix doc filename
 
 2.2.1 (2020-07-15)
 ------------------

@@ -12,7 +12,7 @@ def read_relative_file(filename):
 
 
 NAME = "django-chartjs-demo"
-README = read_relative_file("README")
+README = read_relative_file("README.rst")
 VERSION = "0.1"
 PACKAGES = ["demoproject"]
 REQUIRES = ["django-chartjs", "Django", "django_nose"]
